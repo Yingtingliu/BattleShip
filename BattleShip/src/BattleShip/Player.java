@@ -1,4 +1,4 @@
-package BattleField;
+package BattleShip;
 
 public class Player {
 	Board board;

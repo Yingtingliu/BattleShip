@@ -1,4 +1,4 @@
-package BattleField;
+package BattleShip;
 
 import java.util.Arrays;
 import java.util.Random;
