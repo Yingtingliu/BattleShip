@@ -15,30 +15,39 @@ public class Player {
 	
 	public boolean takeTurn(Player player, Square[][] gameboard) {
 		String temp, firstWord, secondWord;
+		System.out.println("Please enter the position x y from 0-9, eg: 0 1");
 		Scanner in = new Scanner(System.in);
 		//printout player's input 
 		temp = in.nextLine();
 		System.out.println(temp);
 		
 		in = new Scanner(temp); // make it a scanner
-		firstWord = in.next(); // get the first word
+		firstWord = in.next(); 
 		secondWord = in.next();
 		int row = Integer.valueOf(firstWord);
-		int column = Integer.valueOf(secondWord);
+		int column = Integer.valueOf(secondWord);		
 		
+		// hit the square		
+		if(gameboard[row][column].isFire()) {
+			//if there's ship
+			gameboard[row][column].setShipCurrentStatus(true);
+			gameboard[row][column].setFire(true);
+		} else {
+			//there's no ship
+			gameboard[row][column].setFire(true);
+		}		
 		
-		
-		gameboard[row][column].setShipCurrentStatus(true);
-		
-		if() {
+		if(firstWord=="1") {
 			
+			return false;
 		}else {
-			
+			//fired all the ships
+			return true;
 		}
 		
 		
 		
-		return false;		
+				
 	}
 	
 

@@ -21,12 +21,19 @@ public class BattleShip {
 		this.size = size;
 	}
 	
-	public Square[][] addBattleShip(Square[][] gameBord, int[] ship) {
+	public Square[][] addSquare(Square[][] gameBord, int[] shipCoordinates,BattleShip battleShip) {
 		
-		gameBord[ship[0]][ship[1]].setShipInSquare(true);
-		gameBord[ship[2]][ship[3]].setShipInSquare(true);
+		gameBord[shipCoordinates[0]][shipCoordinates[1]].setShipInSquare(true);
+		gameBord[shipCoordinates[2]][shipCoordinates[3]].setShipInSquare(true);
 		
 		return gameBord;
+	}
+	
+	public BattleShip hitBattleShip(Square[][] gameBord, int[] shipCoordinates, BattleShip battleShip) {
+		
+		gameBord[shipCoordinates[0]][shipCoordinates[1]].setShipCurrentStatus(true); //sunk
+		
+		return battleShip;
 	}
 	
 	
