@@ -20,7 +20,7 @@ public class text2 {
 		text3[][] gameBord = new text3[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBord[i][j] = new text3(i,j,false,false,false);
+				gameBord[i][j] = new text3(i, j, false, false, false);
 			}
 		}
 		return placeShips(gameBord,row,column);
@@ -63,14 +63,13 @@ public class text2 {
 			cooridnates[1] = randomColumn;
 			cooridnates[2] = randomRow+1;
 			cooridnates[3] = randomColumn;
-		}		
+		}
 		return cooridnates;
 	}
 
-	public String toString(text2 board) {
+	public String toString(text2 text2) {
 		
-		
-		text3[][] b2 = board.gameBord(row,column);
+		text3[][] b2 = gameBord(row,column);
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
 				System.out.print(b2[i][j].toString());				

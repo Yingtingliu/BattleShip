@@ -3,19 +3,21 @@ package BattleShip;
 import java.util.Scanner;
 
 public class text4 {
-	Board board;
+	text3 board;
 	String name;
 	int score;	
 	
 	//constructor
-	public text4(Board board, String name) {
+	public text4(text3 board, String name) {
 		this.board = board;
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(text4 player, Square[][] gameboard) {
+	public boolean takeTurn(text4 text4, Square[][] gameboard) {
 		String temp, firstWord, secondWord;
 		Scanner in = new Scanner(System.in);
+		boolean attack = false;
+		while(!attack) {
 		//printout player's input 
 		temp = in.nextLine();
 		System.out.println(temp);
@@ -27,18 +29,16 @@ public class text4 {
 		int column = Integer.valueOf(secondWord);
 		
 		gameboard[row][column].setShipCurrentStatus(true);
-		
-		
-		
+		}
 		return false;		
 	}
 	
 
 	//getter and setter
-	public Board getBoard() {
+	public text3 getBoard() {
 		return board;
 	}
-	public void setBoard(Board board) {
+	public void setBoard(text3 board) {
 		this.board = board;
 	}
 	public String getName() {
