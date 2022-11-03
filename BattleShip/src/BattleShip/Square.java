@@ -4,9 +4,18 @@ public class Square {
 	
 	private int row;
 	private int column;
-	private boolean shipInSquare;
-	private boolean shipCurrentStatus;
-	private boolean fire;
+	
+	private boolean shipInSquare; 
+	// true: this square has a ship
+	// default false
+	
+	private boolean shipCurrentStatus; 
+	// true: battle ship hitted
+	// default false
+	
+	private boolean fire; 
+	//true: this square has been fired 
+	// default false
 	
 	//constructor	
 	public Square(int row, int column, boolean shipInSquare, boolean shipCurrentStatus, boolean fire) {
@@ -59,9 +68,9 @@ public class Square {
 	public String toString() {
 		
 		if(fire) {
-			return " X ";
-		} else if(!shipCurrentStatus){
-			return " B ";
+			return " x ";
+		} else if(shipCurrentStatus){
+			return " o ";
 		} else {
 			return " - ";
 		}		

@@ -39,10 +39,8 @@ public class Board {
 			}else {
 				gameBord[ship[0]][ship[1]].setShipInSquare(true);
 				gameBord[ship[2]][ship[3]].setShipInSquare(true);
-			}
-			
+			}			
 		}
-
 		return gameBord;
 	}
 	
@@ -69,5 +67,21 @@ public class Board {
 		}		
 		return cooridnates;
 	}
+
+	public String toString(Board board) {
+		
+		
+		Square[][] b2 = board.gameBord(row,column);
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				System.out.print(b2[i][j].toString());				
+			}
+			System.out.println();
+		}
+		
+		return null;
+	}
+	
+	
 		
 }

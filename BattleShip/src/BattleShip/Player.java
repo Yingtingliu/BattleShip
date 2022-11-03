@@ -1,5 +1,7 @@
 package BattleShip;
 
+import java.util.Scanner;
+
 public class Player {
 	Board board;
 	String name;
@@ -7,12 +9,26 @@ public class Player {
 	
 	//constructor
 	public Player(Board board, String name) {
-		super();
 		this.board = board;
 		this.name = name;		
 	}
 	
-	public boolean takeTurn() {
+	public boolean takeTurn(Player player, Board board) {
+		String temp, firstWord, secondWord;
+		Scanner in = new Scanner(System.in);
+		//printout player's input 
+		temp = in.nextLine();
+		System.out.println(temp);
+		
+		in = new Scanner(temp); // make it a scanner
+		firstWord = in.next(); // get the first word
+		secondWord = in.next();
+		int row = Integer.valueOf(firstWord);
+		int column = Integer.valueOf(secondWord);
+		
+		
+		
+		
 		return false;		
 	}
 	
