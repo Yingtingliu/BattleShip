@@ -2,48 +2,83 @@ package BattleShip;
 
 public class text3 {
 	
-	public static String[][] drawBoard(int width, int height) {
-		String[][] board = new String[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				board[i][j] = "_";
-			}
-		}
-		// 畫戰艦
-		int finishBattleship = 1;
-		while (finishBattleship > 0) {
-			for (int q = 0; q < 5; q++) {
-				int col = (int) (Math.random() * width);
-				int row = (int) (Math.random() * height);
-				board[col][row] = "B";
-			}
-			finishBattleship--;
-		}
-		return board;
+	private int row;
+	private int column;
+	
+	private boolean shipInSquare; 
+	// true: this square has a ship
+	// default false
+	
+	private boolean shipCurrentStatus; 
+	// true: battle ship hitted
+	// default false
+	
+	private boolean fire; 
+	//true: this square has been fired 
+	// default false
+	
+	//constructor	
+	public text3(int row, int column, boolean shipInSquare, boolean shipCurrentStatus, boolean fire) {
+		super();
+		this.row = row;
+		this.column = column;
+		this.shipInSquare = shipInSquare;
+		this.shipCurrentStatus = shipCurrentStatus;
+		this.fire = fire;
 	}
 	
-	public static String[][] controlBoard(int width, int height) {
-		String[][] board = new String[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				board[i][j] = "_";
-			}
-		}
-		return board;
+	public text3() {
+		super();
+	}	
+
+	//getter and setter
+	public Integer getRow() {
+		return row;
 	}
-	
-	public static String[][] changeBoard(String side, String[][] board, int[] change) {
-		if (change[0] == 1) {
-			board[change[2]][change[1]] = "*";
-			return board;
-		} else {
-			board[change[2]][change[1]] = "0";
-			return board;
-		}
+	public void setRow(Integer row) {
+		this.row = row;
+	}
+	public Integer getColumn() {
+		return column;
+	}
+	public void setColumn(Integer column) {
+		this.column = column;
+	}
+	public boolean isShipInSquare() {
+		return shipInSquare;
+	}
+	public void setShipInSquare(boolean shipInSquare) {
+		this.shipInSquare = shipInSquare;
+	}
+	public boolean isShipCurrentStatus() {
+		return shipCurrentStatus;
+	}
+	public void setShipCurrentStatus(boolean shipCurrentStatus) {
+		this.shipCurrentStatus = shipCurrentStatus;
+	}
+	public boolean isFire() {
+		return fire;
+	}
+	public void setFire(boolean fire) {
+		this.fire = fire;
 	}
 
-	public static int number(int[] change) {
-		return change[3];
+
+	@Override
+	public String toString() {
+		
+		if(fire) {
+			return " x ";
+		} else if(shipCurrentStatus){
+			return " o ";
+		} else {
+			return " - ";
+		}		
+		
 	}
+	
+	
+	
+	
 
 }

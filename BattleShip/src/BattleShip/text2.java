@@ -1,99 +1,85 @@
 package BattleShip;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class text2 {
+	private String board;
+	private int row;
+	private int column;
+	private final static int shipAmount = 5;
 	
-	public static int pB = 5;
-	public static int cB = 5;
+	public text2() {		
+	}
 	
-	public static int[] attack(String[][] computer, String[][] control) {
-		boolean attack = false;
-		Scanner input = new Scanner(System.in);
-		while (!attack) {
-			System.out.println();
-			System.out.println("大胖豬1號請選擇投擲炸彈的那一排(1-10)");
-			int row = input.nextInt();
-			System.out.println("大胖豬1號請選擇投擲炸彈的列(1-10)");
-			int col = input.nextInt();
-			int[] result = new int[3];
-			result[1] = row - 1;
-			result[2] = col - 1;
-
-			if (row >= 1 && row <= 10 && col >= 1 && col <= 10 && control[col - 1][row - 1] == "_") {
-				if (computer[col - 1][row - 1] == "B") {
-					System.out.println("你摧毀了大胖豬2號的戰艦！");
-					result[0] = 1;
-					cB--;
-					return result; // 1 代表戰艦
-				} else {
-					System.out.println("你什麼都沒打中");
-					result[0] = -1;
-					System.out.println();
-					return result; // -1 你什麼都沒打中
-				}
-			} else {
-				System.out.println("未定義位置");
+	public text2(Integer row, Integer column) {
+		this.row = row;
+		this.column = column;
+	}
+	
+	public text3[][] gameBord (int row, int column){
+		text3[][] gameBord = new text3[row][column];
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				gameBord[i][j] = new text3(i, j, false, false, false);
 			}
 		}
+		return placeShips(gameBord,row,column);
+	}
+
+	private static text3[][] placeShips(text3[][] gameBord,int row, int column) {
+				
+		for(int i=0;i<shipAmount;i++) {
+			int[] ship = generateShipCoordinates(row,column);
+			boolean s1 = gameBord[ship[0]][ship[1]].isShipInSquare();
+			boolean s2 = gameBord[ship[2]][ship[3]].isShipInSquare();
+			
+			if(s1||s2) {
+				i--;
+			}else {
+				gameBord[ship[0]][ship[1]].setShipInSquare(true);
+				gameBord[ship[2]][ship[3]].setShipInSquare(true);
+			}			
+		}
+		return gameBord;
+	}
+	
+	private static int[] generateShipCoordinates(int row, int column) {
+		int[] cooridnates = new int[4];
+
+		//random position
+		Random r = new Random();
+		int randomRow = r.nextInt(10);
+		int randomColumn = r.nextInt(10);		
+		//ramdom direction		
+		boolean direction = r.nextBoolean();
+		
+		if(randomRow<(row-1) && randomColumn<(column-1) && direction) {
+			cooridnates[0] = randomRow;
+			cooridnates[1] = randomColumn;
+			cooridnates[2] = randomRow;
+			cooridnates[3] = randomColumn+1;
+		} else if(randomRow<(row-1) && randomColumn<(column-1) && !direction){
+			cooridnates[0] = randomRow;
+			cooridnates[1] = randomColumn;
+			cooridnates[2] = randomRow+1;
+			cooridnates[3] = randomColumn;
+		}
+		return cooridnates;
+	}
+
+	public String toString(text2 text2) {
+		
+		text3[][] b2 = gameBord(row,column);
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				System.out.print(b2[i][j].toString());				
+			}
+			System.out.println();
+		}
+		
 		return null;
 	}
-
-	public static int[] attack2(String[][] computer, String[][] control) {
-		boolean attack = false;
-		Scanner input = new Scanner(System.in);
-		while (!attack) {
-			System.out.println();
-			System.out.println("大胖豬2號請選擇投擲炸彈的那一排(1-10)");
-			int row = input.nextInt();
-			System.out.println("大胖豬2號請選擇投擲炸彈的列(1-10)");
-			int col = input.nextInt();
-			int[] result = new int[3];
-			result[1] = row - 1;
-			result[2] = col - 1;
-
-			if (row >= 1 && row <= 10 && col >= 1 && col <= 10 && control[col - 1][row - 1] == "_") {
-				if (computer[col - 1][row - 1] == "B") {
-					System.out.println("你摧毀了大胖豬1號的戰艦！");
-					result[0] = 1;
-					cB--;
-					return result; // 1 代表戰艦
-				} else {
-					System.out.println("你什麼都沒打中");
-					result[0] = -1;
-					System.out.println();
-					return result; // -1 你什麼都沒打中
-				}
-			} else {
-				System.out.println("未定義位置");
-			}
-		}
-		return null;
-	}
-
-
-	public static boolean process() {
-		if (cB <= 0) {
-			System.out.println("大胖豬1號 贏了！");
-			return false;
-		} else if (pB <= 0) {
-			System.out.println("大胖豬2號 贏了！");
-			return false;
-		} else {
-			if (cB == 0) {
-				System.out.println("你摧毀了大胖豬2號的戰艦！");
-				cB--;
-			}
-			if (pB == 0) {
-				System.out.println("你摧毀了大胖豬1號的戰艦！");
-				pB--;
-			}
-			return true;
-		}
-	}
-	
-
-
 	
 	
+		
 }
