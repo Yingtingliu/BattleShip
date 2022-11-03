@@ -26,7 +26,15 @@ public class Player {
 		int row = Integer.valueOf(firstWord);
 		int column = Integer.valueOf(secondWord);
 		
+		
+		
 		gameboard[row][column].setShipCurrentStatus(true);
+		
+		if() {
+			
+		}else {
+			
+		}
 		
 		
 		

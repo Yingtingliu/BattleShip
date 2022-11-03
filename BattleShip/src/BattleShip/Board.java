@@ -7,6 +7,7 @@ public class Board {
 	private String board;
 	private int row;
 	private int column;
+	
 	private final static int shipAmount = 5;
 	
 	public Board() {		
@@ -28,7 +29,9 @@ public class Board {
 	}
 
 	private static Square[][] placeShips(Square[][] gameBord,int row, int column) {
-				
+		
+		BattleShip[] b1 = new BattleShip[shipAmount];
+		
 		for(int i=0;i<shipAmount;i++) {
 			int[] ship = generateShipCoordinates(row,column);
 			boolean s1 = gameBord[ship[0]][ship[1]].isShipInSquare();
@@ -37,8 +40,8 @@ public class Board {
 			if(s1||s2) {
 				i--;
 			}else {
-				gameBord[ship[0]][ship[1]].setShipInSquare(true);
-				gameBord[ship[2]][ship[3]].setShipInSquare(true);
+				b1[i] = new BattleShip(false);
+				gameBord = b1[i].addBattleShip(gameBord, ship[0], ship[1],ship[2],ship[3]);
 			}			
 		}
 		return gameBord;
@@ -67,9 +70,13 @@ public class Board {
 		}		
 		return cooridnates;
 	}
+	
+//	public void attack( Board board, int row, int column) {
+//		
+//		board[row][column].setShipCurrentStatus(true);
+//	}
 
-	public String toString(Board board) {
-		
+	public String toString(Board board) {		
 		
 		Square[][] b2 = board.gameBord(row,column);
 		for (int i = 0; i < row; i++) {
