@@ -21,10 +21,10 @@ public class BattleShip {
 		this.size = size;
 	}
 	
-	public Square[][] addBattleShip(Square[][] gameBord, int row1 ,int column1, int row2, int column2) {
+	public Square[][] addBattleShip(Square[][] gameBord, int[] ship) {
 		
-		gameBord[row1][column1].setShipInSquare(true);
-		gameBord[row2][column2].setShipInSquare(true);
+		gameBord[ship[0]][ship[1]].setShipInSquare(true);
+		gameBord[ship[2]][ship[3]].setShipInSquare(true);
 		
 		return gameBord;
 	}

@@ -41,7 +41,7 @@ public class Board {
 				i--;
 			}else {
 				b1[i] = new BattleShip(false);
-				gameBord = b1[i].addBattleShip(gameBord, ship[0], ship[1],ship[2],ship[3]);
+				gameBord = b1[i].addBattleShip(gameBord, ship);
 			}			
 		}
 		return gameBord;
