@@ -7,8 +7,7 @@ public class BattleShip {
 	private int size; //size of the ship
 	
 	private final static int defaultHealth = 2;
-	private final static int defaultSize = 2;
-	
+	private final static int defaultSize = 2;	
 	
 	public BattleShip(boolean sunk) {
 		this.sunk = sunk;
