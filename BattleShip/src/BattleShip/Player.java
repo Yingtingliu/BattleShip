@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Player {
 	Board board;
 	String name;
-	Integer score;	
+	int score;	
 	
 	//constructor
 	public Player(Board board, String name) {
@@ -13,7 +13,7 @@ public class Player {
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(Player player, Board board) {
+	public boolean takeTurn(Player player, Square[][] gameboard) {
 		String temp, firstWord, secondWord;
 		Scanner in = new Scanner(System.in);
 		//printout player's input 
@@ -26,6 +26,7 @@ public class Player {
 		int row = Integer.valueOf(firstWord);
 		int column = Integer.valueOf(secondWord);
 		
+		gameboard[row][column].setShipCurrentStatus(true);
 		
 		
 		
@@ -46,10 +47,10 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getScore() {
+	public int getScore() {
 		return score;
 	}
-	public void setScore(Integer score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 	
