@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class text {
 
-	public static int pB = 5;
-	public static int cB = 5;
+	public static int pB = 10;
+	public static int cB = 10;
 
 	public static String[][] drawBoard(int width, int height) {
 		String[][] board = new String[width][height];
@@ -15,14 +15,19 @@ public class text {
 			}
 		}
 		// 畫戰艦
-		int finishBattleship = 1;
+		int finishBattleship = 5;
 		while (finishBattleship > 0) {
-			for (int q = 0; q < 5; q++) {
-				int col = (int) (Math.random() * width);
-				int row = (int) (Math.random() * height);
-				board[col][row] = "B";
+			int col = (int) (Math.random() * width);
+			int row = (int) (Math.random() * height);
+			int x = (int) (Math.random() * 2);
+			int y = (int) (Math.random() * 2);
+			if ((x == 0 && y == 1) || (x == 1 && y == 0)) {
+				if (board[col][row] != "B" && col < 9 && row < 9 && board[col + x][row + y] != "B") {
+					board[col][row] = "B";
+					board[col + x][row + y] = "B";
+					finishBattleship--;
+				}
 			}
-			finishBattleship--;
 		}
 		return board;
 	}
