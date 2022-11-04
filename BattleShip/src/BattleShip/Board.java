@@ -76,6 +76,8 @@ public class Board {
 //		
 //		board[row][column].setShipCurrentStatus(true);
 //	}
+	
+
 
 	public String toString(Board board, Square[][] gameBoard) {		
 		

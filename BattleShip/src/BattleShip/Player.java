@@ -43,11 +43,27 @@ public class Player {
 		}else {
 			//fired all the ships
 			return true;
-		}
-		
-		
-		
+		}	
 				
+	}
+	
+	public boolean hitAllShips() {
+		
+		return false;
+		
+	}
+	
+	public void gameOver(Player p1, Player p2) {
+		System.out.println("Your ships: " + p1.name + " | Computer ships: " + p2.name);
+		if (p1.hitAllShips()) {
+			System.out.println(p1.name + ",You won the battle! ");
+			System.out.println(p2.name+"You lost the battle! ");
+		}
+		else if(p2.hitAllShips()) {
+			System.out.println(p2.name + ",You won the battle! ");
+			System.out.println(p1.name+"You lost the battle! ");
+		}			
+		System.out.println();
 	}
 	
 

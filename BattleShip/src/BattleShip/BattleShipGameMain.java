@@ -24,7 +24,7 @@ public class BattleShipGameMain {
 			turn = p2.takeTurn(p2, null);
 		}
 		
-		
+		p1.gameOver(p1,p2);
 	}
 
 }
