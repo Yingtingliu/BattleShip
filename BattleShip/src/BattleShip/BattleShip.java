@@ -41,9 +41,9 @@ public class BattleShip {
 		return battleShip;
 	}
 	
-	public boolean hitAllShips() {
+	public boolean hitAllShips(BattleShip[] b1) {
 		boolean flag = false;
-		BattleShip[] b1 = new BattleShip[5];
+//		b1 = new BattleShip[5];
 		for(BattleShip b : b1) {
 			if(!b.square1.isFire()) {
 				flag = true;
