@@ -67,10 +67,10 @@ public class Square {
 	@Override
 	public String toString() {
 		
-		if(fire) {
-			return " x ";
-		} else if(shipCurrentStatus){
+		if(shipCurrentStatus) {
 			return " o ";
+		} else if(fire && !shipCurrentStatus){
+			return " x ";
 		} else {
 			return " - ";
 		}		

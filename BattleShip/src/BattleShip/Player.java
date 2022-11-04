@@ -14,21 +14,24 @@ public class Player {
 	}
 	
 	public boolean takeTurn(Board board,Player player, Square[][] gameboard) {
+		//print the board
+		board.toString(board,gameboard);
+		board.toStringViewShip(board,gameboard);		
+		
+		//Use scanner to get player's input
 		String temp, firstWord, secondWord;
 		System.out.println("Please enter the position x y from 0-9, eg: 0 1");
 		Scanner in = new Scanner(System.in);
-		//printout player's input 
 		temp = in.nextLine();
-		System.out.println(temp);
-		
-		in = new Scanner(temp); // make it a scanner
+		in = new Scanner(temp);
+		//extract input to two words
 		firstWord = in.next(); 
 		secondWord = in.next();
 		int row = Integer.valueOf(firstWord);
 		int column = Integer.valueOf(secondWord);		
 		
 		// hit the square		
-		if(gameboard[row][column].isFire()) {
+		if(gameboard[row][column].isShipInSquare()) {
 			//if there's ship
 			gameboard[row][column].setShipCurrentStatus(true);
 			gameboard[row][column].setFire(true);
@@ -50,9 +53,7 @@ public class Player {
 		
 		
 		
-		if() {
-			
-		}
+//		
 		return false;
 		
 	}

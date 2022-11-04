@@ -1,6 +1,5 @@
 package BattleShip;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -43,7 +42,6 @@ public class Board {
 			}else {
 				i--;
 			}
-//			gameBord[0][0].setShipInSquare(false);
 		}
 		return gameBord;
 	}
@@ -73,20 +71,14 @@ public class Board {
 		return cooridnates;
 	}
 	
-//	public void attack( Board board, int row, int column) {
-//		
-//		board[row][column].setShipCurrentStatus(true);
-//	}
-	
-
 
 	public String toString(Board board, Square[][] gameBoard) {		
 		
 		System.out.println("------Game Borad Starts Here-----");
-		Square[][] b2 = board.gameBord(row,column);
+//		Square[][] b2 = board.gameBord(row,column);
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				System.out.print(b2[i][j].toString());				
+				System.out.print(gameBoard[i][j].toString());				
 			}
 			System.out.println();
 		}
@@ -98,10 +90,10 @@ public class Board {
 	
 	public String toStringViewShip (Board board, Square[][] gameBoard) {		
 		System.out.println("------Ship Borad Starts Here-----");
-		Square[][] b2 = board.gameBord(row,column);
+//		Square[][] b2 = board.gameBord(row,column);
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				System.out.print(b2[i][j].toStringViewShip());				
+				System.out.print(gameBoard[i][j].toStringViewShip());				
 			}
 			System.out.println();
 		}
