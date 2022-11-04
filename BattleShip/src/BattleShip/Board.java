@@ -31,9 +31,9 @@ public class Board {
 	private static Square[][] placeShips(Square[][] gameBord,int row, int column) {
 		
 		BattleShip[] b1 = new BattleShip[shipAmount];
-		
+		int[] shipCoordinates = null;
 		for(int i=0;i<shipAmount;i++) {
-			int[] shipCoordinates = generateShipCoordinates(row,column);
+			shipCoordinates = generateShipCoordinates(row,column);
 			boolean s1 = gameBord[shipCoordinates[0]][shipCoordinates[1]].isShipInSquare();
 			boolean s2 = gameBord[shipCoordinates[2]][shipCoordinates[3]].isShipInSquare();
 			
@@ -47,7 +47,8 @@ public class Board {
 		}
 		return gameBord;
 	}
-	
+
+
 	private static int[] generateShipCoordinates(int row, int column) {
 		int[] cooridnates = new int[4];
 

@@ -13,7 +13,7 @@ public class Player {
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(Player player, Square[][] gameboard) {
+	public boolean takeTurn(Board board,Player player, Square[][] gameboard) {
 		String temp, firstWord, secondWord;
 		System.out.println("Please enter the position x y from 0-9, eg: 0 1");
 		Scanner in = new Scanner(System.in);
@@ -37,8 +37,7 @@ public class Player {
 			gameboard[row][column].setFire(true);
 		}		
 		
-		if(firstWord=="1") {
-			
+		if(!hitAllShips()) {			
 			return false;
 		}else {
 			//fired all the ships
@@ -49,6 +48,11 @@ public class Player {
 	
 	public boolean hitAllShips() {
 		
+		
+		
+		if() {
+			
+		}
 		return false;
 		
 	}

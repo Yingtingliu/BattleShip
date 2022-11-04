@@ -19,11 +19,10 @@ public class BattleShipGameMain {
 		Player p1 = new Player(b1, "Player1");
 		Player p2 = new Player(b2, "Player2");
 		while(!turn ) {			
-			turn = p1.takeTurn(p1, gameBoard1);
+			turn = p1.takeTurn(b1,p1, gameBoard1);
 			if(turn) {break;}
-			turn = p2.takeTurn(p2, null);
-		}
-		
+			turn = p2.takeTurn(b2, p2, null);
+		}		
 		p1.gameOver(p1,p2);
 	}
 
