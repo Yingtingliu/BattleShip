@@ -76,6 +76,16 @@ public class Square {
 		}		
 		
 	}
+	public String toStringViewShip() {
+		
+		if(shipInSquare) {
+			return " S ";
+		} else {
+			return " - ";
+		}		
+		
+	}
+	
 	
 	
 	
