@@ -20,7 +20,7 @@ public class Player {
 		
 		//Use scanner to get player's input
 		String temp, firstWord, secondWord;
-		System.out.println("Please enter the position x y from 0-9, eg: 0 1");
+		System.out.println("Hi " + player.name + ", please enter the position x y from 0-9, eg: 0 1");
 		Scanner in = new Scanner(System.in);
 		temp = in.nextLine();
 		in = new Scanner(temp);

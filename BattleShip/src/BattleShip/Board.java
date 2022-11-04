@@ -6,8 +6,8 @@ public class Board {
 	private String board;
 	private int row;
 	private int column;
-	
 	private final static int shipAmount = 5;
+	
 	
 	public Board() {		
 	}
@@ -17,19 +17,19 @@ public class Board {
 		this.column = column;
 	}
 	
-	public Square[][] gameBord (int row, int column){
+	public Square[][] gameBord (int row, int column,  BattleShip[] b1){
 		Square[][] gameBord = new Square[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
 				gameBord[i][j] = new Square(i,j,false,false,false);
 			}
 		}
-		return placeShips(gameBord,row,column);
+		return placeShips(gameBord,row,column,b1);
 	}
 
-	private static Square[][] placeShips(Square[][] gameBord,int row, int column) {
+	private static Square[][] placeShips(Square[][] gameBord,int row, int column, BattleShip[] b1) {
 		
-		BattleShip[] b1 = new BattleShip[shipAmount];
+		
 		int[] shipCoordinates = null;
 		for(int i=0;i<shipAmount;i++) {
 			shipCoordinates = generateShipCoordinates(row,column);
@@ -76,8 +76,8 @@ public class Board {
 		
 		System.out.println("------Game Borad Starts Here-----");
 //		Square[][] b2 = board.gameBord(row,column);
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < column; j++) {
+		for (int i = 0; i < column; i++) {
+			for (int j = 0; j < row; j++) {
 				System.out.print(gameBoard[i][j].toString());				
 			}
 			System.out.println();
@@ -91,8 +91,8 @@ public class Board {
 	public String toStringViewShip (Board board, Square[][] gameBoard) {		
 		System.out.println("------Ship Borad Starts Here-----");
 //		Square[][] b2 = board.gameBord(row,column);
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < column; j++) {
+		for (int i = 0; i < column; i++) {
+			for (int j = 0; j < row; j++) {
 				System.out.print(gameBoard[i][j].toStringViewShip());				
 			}
 			System.out.println();

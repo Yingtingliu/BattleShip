@@ -8,10 +8,13 @@ public class BattleShipGameMain {
 		//define the board
 		int row = 10;
 		int column = 10;
+		final int shipAmount = 5;
 		Board b1 = new Board(row,column);
 		Board b2 = new Board(row,column);
-		Square[][] gameBoard1 = b1.gameBord(row, column);
-		Square[][] gameBoard2 = b2.gameBord(row, column);
+		BattleShip[] shipArray1 = new BattleShip[shipAmount];
+		BattleShip[] shipArray2 = new BattleShip[shipAmount];
+		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1);
+		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2);
 		
 		//Create two player and take turns
 		boolean turn = false;		
