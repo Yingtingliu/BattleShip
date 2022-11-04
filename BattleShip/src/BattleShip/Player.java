@@ -13,7 +13,7 @@ public class Player {
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(Board board,Player player, Square[][] gameboard) {
+	public boolean takeTurn(Board board,Player player, Square[][] gameboard,BattleShip[] battleShipArray) {
 		//print the board
 		board.toString(board,gameboard);
 		board.toStringViewShip(board,gameboard);		
@@ -32,43 +32,27 @@ public class Player {
 		
 		// hit the square		
 		if(gameboard[row][column].isShipInSquare()) {
-			//if there's ship
-			gameboard[row][column].setShipCurrentStatus(true);
-			gameboard[row][column].setFire(true);
-		} else {
-			//there's no ship
-			gameboard[row][column].setFire(true);
-		}		
+			//if there's ship, get the battle ship number
+			int battleShipNumber = gameboard[row][column].getBattleShipNumber();
+			// check current health number
+			int currentHealth = battleShipArray[battleShipNumber].getHealth();
+			battleShipArray[battleShipNumber].setHealth(currentHealth-1);
+			//if the current health number is 1, deduct the number and set it as sink
+			if(currentHealth==1) { 
+				battleShipArray[battleShipNumber].setSunk(true);
+			} 			
+		} 
+		gameboard[row][column].setFire(true);
 		
-		if(!hitAllShips()) {			
-			return false;
-		}else {
-			//fired all the ships
-			return true;
-		}	
-				
+		for(BattleShip b : battleShipArray) if(!b.isSunk()) return false;
+	    return true;
 	}
 	
-	public boolean hitAllShips() {
-		
-		
-		
-//		
-		return false;
-		
-	}
 	
-	public void gameOver(Player p1, Player p2) {
-		System.out.println("Your ships: " + p1.name + " | Computer ships: " + p2.name);
-		if (p1.hitAllShips()) {
-			System.out.println(p1.name + ",You won the battle! ");
-			System.out.println(p2.name+",You lost the battle! ");
-		}
-		else if(p2.hitAllShips()) {
-			System.out.println(p2.name + ",You won the battle! ");
-			System.out.println(p1.name+",You lost the battle! ");
-		}			
-		System.out.println();
+	public void gameOver(Player player) {		
+		
+						
+		
 	}
 	
 

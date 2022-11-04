@@ -21,24 +21,28 @@ public class Board {
 		Square[][] gameBord = new Square[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBord[i][j] = new Square(i,j,false,false,false);
+				gameBord[i][j] = new Square(i,j,false,-1,false);
 			}
 		}
 		return placeShips(gameBord,row,column,b1);
 	}
 
-	private static Square[][] placeShips(Square[][] gameBord,int row, int column, BattleShip[] b1) {
-		
+	private static Square[][] placeShips(Square[][] gameBord,int row, int column, BattleShip[] b1) {		
 		
 		int[] shipCoordinates = null;
 		for(int i=0;i<shipAmount;i++) {
 			shipCoordinates = generateShipCoordinates(row,column);
-			boolean s1 = gameBord[shipCoordinates[0]][shipCoordinates[1]].isShipInSquare();
-			boolean s2 = gameBord[shipCoordinates[2]][shipCoordinates[3]].isShipInSquare();
+			Square square1 = gameBord[shipCoordinates[0]][shipCoordinates[1]];
+			Square square2 = gameBord[shipCoordinates[2]][shipCoordinates[3]];
+			boolean s1 = square1.isShipInSquare();
+			boolean s2 = square2.isShipInSquare();
 			
 			if(!s1 && !s2) {
 				b1[i] = new BattleShip(false);
-				gameBord = b1[i].addSquare(gameBord, shipCoordinates,b1[i]);
+				square1.setShipInSquare(true);
+				square2.setShipInSquare(true);
+				square1.setBattleShipNumber(i);
+				square2.setBattleShipNumber(i);
 			}else {
 				i--;
 			}
