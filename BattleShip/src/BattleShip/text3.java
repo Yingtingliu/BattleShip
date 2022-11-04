@@ -76,6 +76,16 @@ public class text3 {
 		}		
 		
 	}
+	public String toStringViewShip() {
+		
+		if(shipInSquare) {
+			return " S ";
+		} else {
+			return " - ";
+		}		
+		
+	}
+	
 	
 	
 	

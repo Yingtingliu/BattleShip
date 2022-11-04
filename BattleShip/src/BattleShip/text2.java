@@ -6,6 +6,7 @@ public class text2 {
 	private String board;
 	private int row;
 	private int column;
+	
 	private final static int shipAmount = 5;
 	
 	public text2() {		
@@ -20,36 +21,40 @@ public class text2 {
 		text3[][] gameBord = new text3[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBord[i][j] = new text3(i, j, false, false, false);
+				gameBord[i][j] = new text3(i,j,false,false,false);
 			}
 		}
 		return placeShips(gameBord,row,column);
 	}
 
 	private static text3[][] placeShips(text3[][] gameBord,int row, int column) {
-				
+		
+		text5[] b1 = new text5[shipAmount];
+		int[] shipCoordinates = null;
 		for(int i=0;i<shipAmount;i++) {
-			int[] ship = generateShipCoordinates(row,column);
-			boolean s1 = gameBord[ship[0]][ship[1]].isShipInSquare();
-			boolean s2 = gameBord[ship[2]][ship[3]].isShipInSquare();
+			shipCoordinates = generateShipCoordinates(row,column);
+			boolean s1 = gameBord[shipCoordinates[0]][shipCoordinates[1]].isShipInSquare();
+			boolean s2 = gameBord[shipCoordinates[2]][shipCoordinates[3]].isShipInSquare();
 			
-			if(s1||s2) {
-				i--;
+			if(!s1 && !s2) {
+				b1[i] = new text5(false);
+				gameBord = b1[i].addSquare(gameBord, shipCoordinates,b1[i]);
 			}else {
-				gameBord[ship[0]][ship[1]].setShipInSquare(true);
-				gameBord[ship[2]][ship[3]].setShipInSquare(true);
-			}			
+				i--;
+			}
+//			gameBord[0][0].setShipInSquare(false);
 		}
 		return gameBord;
 	}
-	
+
+
 	private static int[] generateShipCoordinates(int row, int column) {
 		int[] cooridnates = new int[4];
 
 		//random position
 		Random r = new Random();
-		int randomRow = r.nextInt(10);
-		int randomColumn = r.nextInt(10);		
+		int randomRow = r.nextInt(9);
+		int randomColumn = r.nextInt(9);		
 		//ramdom direction		
 		boolean direction = r.nextBoolean();
 		
@@ -63,19 +68,44 @@ public class text2 {
 			cooridnates[1] = randomColumn;
 			cooridnates[2] = randomRow+1;
 			cooridnates[3] = randomColumn;
-		}
+		}		
 		return cooridnates;
 	}
+	
+//	public void attack( Board board, int row, int column) {
+//		
+//		board[row][column].setShipCurrentStatus(true);
+//	}
+	
 
-	public String toString(text2 text2) {
+
+	public String toString(text2 board, text3[][] gameBoard) {		
 		
-		text3[][] b2 = gameBord(row,column);
+		System.out.println("------Game Borad Starts Here-----");
+		text3[][] b2 = board.gameBord(row,column);
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
 				System.out.print(b2[i][j].toString());				
 			}
 			System.out.println();
 		}
+		
+		System.out.println("------Game Borad Ends-----");
+		
+		return null;
+	}
+	
+	public String toStringViewShip (text2 board, text3[][] gameBoard) {		
+		System.out.println("------Ship Borad Starts Here-----");
+		text3[][] b2 = board.gameBord(row,column);
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				System.out.print(b2[i][j].toStringViewShip());				
+			}
+			System.out.println();
+		}
+		
+		System.out.println("------Ship Borad Ends-----");
 		
 		return null;
 	}
