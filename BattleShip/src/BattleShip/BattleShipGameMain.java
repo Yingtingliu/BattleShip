@@ -33,7 +33,7 @@ public class BattleShipGameMain {
 				System.out.println(p1.name + ",You won the battle! ");
 				break;
 			}
-			turn = p2.takeTurn(b2, p2, gameBoard2,shipArray1);
+			turn = p2.takeTurn(b2, p2, gameBoard2,shipArray2);
 			if(turn) {
 				System.out.println(p2.name + ",You won the battle! ");
 				break;
