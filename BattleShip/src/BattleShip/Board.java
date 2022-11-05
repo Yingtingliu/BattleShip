@@ -33,12 +33,14 @@ public class Board {
 		
 		int[] shipCoordinates = null;
 		int totalShips = smallShips + mediumShip + largeShip;
-		Square square1,square2,square3;
+		count = 0;
 		boolean s1,s2,s3;
 		for(int i=0;i<totalShips-1;i++) {
-			shipCoordinates = generateShipCoordinates(row, column, smallShips, mediumShip, largeShip);			
-			switch(count) {
-				// count started at 0, count will be added after checking duplicate and then add to an battle ship.
+			shipCoordinates = generateShipCoordinates(row, column, smallShips, mediumShip, largeShip);	
+			Square square1,square2,square3;
+			switch(count) {				
+			// count started at 0, count will be added after checking duplicate and then add to an battle ship.
+				
 				// case 0,1,2 is for generating small ships
 				case 0: case 1: case 2:
 					square1 = gameBord[shipCoordinates[0]][shipCoordinates[1]];
@@ -46,7 +48,7 @@ public class Board {
 					s1 = square1.isShipInSquare();
 					if(!s1) {
 						//create a small battle ship
-						b1[i] = new BattleShip(false);
+						b1[i] = new SmallBattleship(false);
 						square1.setShipInSquare(true);						
 						square1.setBattleShipNumber(i);						
 						count++;
@@ -54,6 +56,7 @@ public class Board {
 						i--;
 					}
 					break;
+					
 				// case 3,4 is for generating medium ships
 				case 3: case 4:	
 					square1 = gameBord[shipCoordinates[0]][shipCoordinates[1]];
@@ -62,7 +65,7 @@ public class Board {
 					s2 = square2.isShipInSquare();
 					
 					if(!s1 && !s2) {
-						b1[i] = new BattleShip(false);
+						b1[i] = new MediumBattleship(false);
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
 						square1.setBattleShipNumber(i);
@@ -72,6 +75,7 @@ public class Board {
 						i--;
 					}
 					break;
+					
 				// case 5 is for generating large ships coordinator
 				case 5: 
 					square1 = gameBord[shipCoordinates[0]][shipCoordinates[1]];
@@ -82,7 +86,7 @@ public class Board {
 					s3 = square3.isShipInSquare();
 					
 					if(!s1 && !s2 && !s3) {
-						b1[i] = new BattleShip(false);
+						b1[i] = new LargeBattleship(false);
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
 						square3.setShipInSquare(true);
@@ -112,15 +116,14 @@ public class Board {
 		
 		//put random numbers into the coordinates
 		switch(count) {
+			
 			// case 0,1,2 is for generating small ships coordinator
 			case 0: case 1: case 2:
-				//generate small ship coordinator
-//				for (int i =0; i<smallShips ; i++) {	
-					//first coordinate
-					coordinates[0] = randomRow;
-					coordinates[1] = randomColumn;
-//				} 
+				//first coordinate
+				coordinates[0] = randomRow;
+				coordinates[1] = randomColumn;
 				break;
+				
 			// case 3,4 is for generating medium ships coordinator
 			case 3: case 4:
 				//generate medium ship coordinator
@@ -150,6 +153,7 @@ public class Board {
 					coordinates[3] = randomColumn;
 				}
 				break;
+				
 			// case 5 is for generating large ships coordinator
 			case 5: 
 				//generate medium ship coordinator

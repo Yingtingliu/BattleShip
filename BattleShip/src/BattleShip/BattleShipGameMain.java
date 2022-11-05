@@ -17,8 +17,8 @@ public class BattleShipGameMain {
 		Board b1 = new Board(row,column);
 		Board b2 = new Board(row,column);
 		
-		BattleShip[] shipArray1 = new BattleShip[totalShips];
-		BattleShip[] shipArray2 = new BattleShip[totalShips];
+		BattleShip[] shipArray1 = new BattleShip[totalShips-1];
+		BattleShip[] shipArray2 = new BattleShip[totalShips-1];
 		
 		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1,smallShipAmount,mediumShipAmount,largeShipAmount);
 		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2,smallShipAmount,mediumShipAmount,largeShipAmount);
