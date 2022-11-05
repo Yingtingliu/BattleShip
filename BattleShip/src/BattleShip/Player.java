@@ -13,63 +13,55 @@ public class Player {
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(Board board,Player player, Square[][] gameboard) {
-		String temp, firstWord, secondWord;
-		System.out.println("Please enter the position x y from 0-9, eg: 0 1");
-		Scanner in = new Scanner(System.in);
-		//printout player's input 
-		temp = in.nextLine();
-		System.out.println(temp);
+	public boolean takeTurn(Board board,Player player, Square[][] gameboard,BattleShip[] battleShipArray) {
+		//print the board
+		board.toString(board,gameboard);
+		board.toStringViewShip(board,gameboard);		
 		
-		in = new Scanner(temp); // make it a scanner
+		//Use scanner to get player's input
+		String temp, firstWord, secondWord;
+		System.out.println("Hi " + player.name + ", please enter the position x y from 0-9, eg: 0 1");
+		Scanner in = new Scanner(System.in);
+		temp = in.nextLine();
+		in = new Scanner(temp);
+		//extract input to two words
 		firstWord = in.next(); 
 		secondWord = in.next();
 		int row = Integer.valueOf(firstWord);
 		int column = Integer.valueOf(secondWord);		
 		
 		// hit the square		
-		if(gameboard[row][column].isFire()) {
-			//if there's ship
-			gameboard[row][column].setShipCurrentStatus(true);
-			gameboard[row][column].setFire(true);
-		} else {
-			//there's no ship
-			gameboard[row][column].setFire(true);
-		}		
+		if(gameboard[row][column].isShipInSquare()) {
+			//if there's ship, get the battle ship number
+			int battleShipNumber = gameboard[row][column].getBattleShipNumber();
+			// check current health number
+			int currentHealth = battleShipArray[battleShipNumber].getHealth();
+			battleShipArray[battleShipNumber].setHealth(currentHealth-1);
+			//if the current health number is 1, deduct the number and set it as sink
+			if(currentHealth==1) { 
+				battleShipArray[battleShipNumber].setSunk(true);
+			} 			
+		} 
+		gameboard[row][column].setFire(true);
 		
-		if(!hitAllShips()) {			
-			return false;
-		}else {
-			//fired all the ships
-			return true;
-		}	
-				
-	}
-	
-	public boolean hitAllShips() {
-		
-		
-		
-		if() {
-			
+		//check if the game is over, if over return true;
+		boolean gameOver = false;
+		int count = 0;
+		for(int i =0; i<battleShipArray.length;) { //0-5			
+			boolean a = battleShipArray[i].isSunk();
+			if(a) {
+				count++;
+			} else {
+				return gameOver = false;
+			}			
+			if(count == battleShipArray.length -1) {
+				return gameOver = true;
+			} else {
+				i++;
+			}
 		}
-		return false;
-		
+		return gameOver;		    
 	}
-	
-	public void gameOver(Player p1, Player p2) {
-		System.out.println("Your ships: " + p1.name + " | Computer ships: " + p2.name);
-		if (p1.hitAllShips()) {
-			System.out.println(p1.name + ",You won the battle! ");
-			System.out.println(p2.name+",You lost the battle! ");
-		}
-		else if(p2.hitAllShips()) {
-			System.out.println(p2.name + ",You won the battle! ");
-			System.out.println(p1.name+",You lost the battle! ");
-		}			
-		System.out.println();
-	}
-	
 
 	//getter and setter
 	public Board getBoard() {

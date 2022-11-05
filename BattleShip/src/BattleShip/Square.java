@@ -9,27 +9,27 @@ public class Square {
 	// true: this square has a ship
 	// default false
 	
-	private boolean shipCurrentStatus; 
-	// true: battle ship hitted
-	// default false
+	private int battleShipNumber; 
+	// number of the battle ship
+	// default -1
 	
 	private boolean fire; 
 	//true: this square has been fired 
 	// default false
 	
 	//constructor	
-	public Square(int row, int column, boolean shipInSquare, boolean shipCurrentStatus, boolean fire) {
+	public Square() {
+		super();
+	}	
+
+	public Square(int row, int column, boolean shipInSquare, int battleShipNumber, boolean fire) {
 		super();
 		this.row = row;
 		this.column = column;
 		this.shipInSquare = shipInSquare;
-		this.shipCurrentStatus = shipCurrentStatus;
+		this.battleShipNumber = battleShipNumber;
 		this.fire = fire;
 	}
-	
-	public Square() {
-		super();
-	}	
 
 	//getter and setter
 	public Integer getRow() {
@@ -50,12 +50,13 @@ public class Square {
 	public void setShipInSquare(boolean shipInSquare) {
 		this.shipInSquare = shipInSquare;
 	}
-	public boolean isShipCurrentStatus() {
-		return shipCurrentStatus;
+	public int getBattleShipNumber() {
+		return battleShipNumber;
 	}
-	public void setShipCurrentStatus(boolean shipCurrentStatus) {
-		this.shipCurrentStatus = shipCurrentStatus;
+	public void setBattleShipNumber(int battleShipNumber) {
+		this.battleShipNumber = battleShipNumber;
 	}
+
 	public boolean isFire() {
 		return fire;
 	}
@@ -67,9 +68,11 @@ public class Square {
 	@Override
 	public String toString() {
 		
-		if(fire) {
+		if(fire && battleShipNumber!=-1) {
+			//hit a ship
 			return " x ";
-		} else if(shipCurrentStatus){
+		} else if(fire && battleShipNumber==-1){
+			//fired and missed
 			return " o ";
 		} else {
 			return " - ";

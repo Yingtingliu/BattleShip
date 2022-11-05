@@ -2,28 +2,47 @@ package BattleShip;
 
 
 public class BattleShipGameMain {
+	
+	//define the board
+	static int row = 10;
+	static int column = 10;
+	//define the ships
+	final static int smallShipAmount = 3;
+	final static int mediumShipAmount = 2;
+	final static int largeShipAmount = 1;
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) {		
 		
-		int row = 10;
-		int column = 10;
+		int totalShips = smallShipAmount+mediumShipAmount+largeShipAmount;
+		
 		Board b1 = new Board(row,column);
 		Board b2 = new Board(row,column);
-		Square[][] gameBoard1 = b1.gameBord(row, column);
-		b1.toString(b1,gameBoard1);
-		b1.toStringViewShip(b1,gameBoard1);
-//		b2.toString(b2);
-//		b2.toStringViewShip(b2)	;
 		
+		BattleShip[] shipArray1 = new BattleShip[totalShips];
+		BattleShip[] shipArray2 = new BattleShip[totalShips];
+		
+		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1,smallShipAmount,mediumShipAmount,largeShipAmount);
+		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2,smallShipAmount,mediumShipAmount,largeShipAmount);
+		
+		//Create two player and take turns
 		boolean turn = false;		
-		Player p1 = new Player(b1, "Player1");
-		Player p2 = new Player(b2, "Player2");
+		Player player1 = new Player(b1, "Player1 - Micky");
+		Player player2 = new Player(b2, "Player2 - Orange");
+		
+		// take turns until turn== true and the game ends
 		while(!turn ) {			
-			turn = p1.takeTurn(b1,p1, gameBoard1);
-			if(turn) {break;}
-			turn = p2.takeTurn(b2, p2, null);
-		}		
-		p1.gameOver(p1,p2);
+			turn = player1.takeTurn(b1,player1, gameBoard1,shipArray1);
+			if(turn) { //player 1 win 
+				System.out.println(player1.name + ", You won the battle! ");
+				break;
+			}
+			turn = player2.takeTurn(b2, player2, gameBoard2,shipArray2);
+			if(turn) {//player 2 win 
+				System.out.println(player2.name + ", You won the battle! ");
+				break;
+			}
+		}			
+		
 	}
 
 }
