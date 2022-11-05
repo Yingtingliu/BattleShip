@@ -3,35 +3,17 @@ package BattleShip;
 public class BattleShip {
 	
 	private boolean sunk; //True for sunk
-	private int health; //remaining health
-	private int size; //size of the ship
+	protected int health; //remaining health
+	protected int size; //size of the ship
 	
 	
-	private final static int defaultHealth = 2;
-	private final static int defaultSize = 2;	
+	private static int defaultHealth = 2;
+	private static int defaultSize = 2;	
 	
 	public BattleShip(boolean sunk) {
 		this.sunk = sunk;
 		this.health = defaultHealth;
 		this.size = defaultSize;
-	}
-	
-	public BattleShip(boolean sunk, Integer health, Integer size) {
-		this.sunk = sunk;
-		this.health = health;
-		this.size = size;
-	}	
-
-	public boolean hitAllShips(BattleShip[] b1) {
-		boolean flag = false;
-//		b1 = new BattleShip[5];
-		for(BattleShip b : b1) {
-			if(!b.sunk) {
-				flag = true;
-			}
-		}
-		return flag;
-		
 	}
 	
 	//getter and setter

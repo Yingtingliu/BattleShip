@@ -31,8 +31,7 @@ public class BattleShipGameMain {
 				System.out.println(p2.name + ",You won the battle! ");
 				break;
 			}
-		}		
-		
+		}			
 		
 	}
 
