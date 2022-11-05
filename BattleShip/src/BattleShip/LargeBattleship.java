@@ -2,12 +2,11 @@ package BattleShip;
 
 public class LargeBattleship extends BattleShip{
 	
-	private static int defaultHealth = 1;
-	private static int defaultSize = 1;	
+	private int defaultSize = 3;	
 	
 	public LargeBattleship(boolean sunk) {
 		super(sunk);
-		this.health = defaultHealth;
+		this.health = defaultSize;
 		this.size = defaultSize;
 	}
 	

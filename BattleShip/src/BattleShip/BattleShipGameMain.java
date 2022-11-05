@@ -6,6 +6,7 @@ public class BattleShipGameMain {
 	//define the board
 	static int row = 10;
 	static int column = 10;
+	//define the ships
 	final static int smallShipAmount = 3;
 	final static int mediumShipAmount = 2;
 	final static int largeShipAmount = 1;
@@ -25,17 +26,19 @@ public class BattleShipGameMain {
 		
 		//Create two player and take turns
 		boolean turn = false;		
-		Player p1 = new Player(b1, "Player1");
-		Player p2 = new Player(b2, "Player2");
+		Player player1 = new Player(b1, "Player1 - Micky");
+		Player player2 = new Player(b2, "Player2 - Orange");
+		
+		// take turns until turn== true and the game ends
 		while(!turn ) {			
-			turn = p1.takeTurn(b1,p1, gameBoard1,shipArray1);
-			if(turn) {
-				System.out.println(p1.name + ",You won the battle! ");
+			turn = player1.takeTurn(b1,player1, gameBoard1,shipArray1);
+			if(turn) { //player 1 win 
+				System.out.println(player1.name + ", You won the battle! ");
 				break;
 			}
-			turn = p2.takeTurn(b2, p2, gameBoard2,shipArray2);
-			if(turn) {
-				System.out.println(p2.name + ",You won the battle! ");
+			turn = player2.takeTurn(b2, player2, gameBoard2,shipArray2);
+			if(turn) {//player 2 win 
+				System.out.println(player2.name + ", You won the battle! ");
 				break;
 			}
 		}			

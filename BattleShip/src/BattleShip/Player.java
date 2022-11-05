@@ -44,8 +44,23 @@ public class Player {
 		} 
 		gameboard[row][column].setFire(true);
 		
-		for(BattleShip b : battleShipArray) if(!b.isSunk()) return false;
-	    return true;
+		//check if the game is over, if over return true;
+		boolean gameOver = false;
+		int count = 0;
+		for(int i =0; i<battleShipArray.length;) { //0-5			
+			boolean a = battleShipArray[i].isSunk();
+			if(a) {
+				count++;
+			} else {
+				return gameOver = false;
+			}			
+			if(count == battleShipArray.length -1) {
+				return gameOver = true;
+			} else {
+				i++;
+			}
+		}
+		return gameOver;		    
 	}
 
 	//getter and setter

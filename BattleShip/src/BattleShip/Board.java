@@ -36,7 +36,7 @@ public class Board {
 		count = 0;
 		boolean s1,s2,s3;
 		for(int i=0;i<totalShips;i++) { //run 0-5, total 6 times
-			System.out.println("------"+ i);
+			
 			shipCoordinates = generateShipCoordinates(row, column, smallShips, mediumShip, largeShip);	
 			Square square1,square2,square3;
 			switch(count) {				
@@ -55,8 +55,7 @@ public class Board {
 						count++;
 					}else {
 						i--;
-					}
-					
+					}					
 					break;
 					
 				// case 3,4 is for generating medium ships
@@ -75,8 +74,7 @@ public class Board {
 						count++;
 					}else {
 						i--;
-					}
-					
+					}					
 					break;
 					
 				// case 5 is for generating large ships coordinator
@@ -99,10 +97,9 @@ public class Board {
 						count++;
 					}else {
 						i--;
-					}
-					
+					}					
 					break;
-			}//switch case ended here
+			}//switch case ended
 		}
 		return gameBord;
 	}
@@ -174,7 +171,7 @@ public class Board {
 					//third coordinate
 					coordinates[4] = randomRow;
 					coordinates[5] = randomColumn+2;
-					System.out.println("A");
+					
 				} else if(randomRow<(row-2) && randomColumn<(column-2) && !direction){
 					//random row and column 0-7 and add at direction row
 					coordinates[0] = randomRow;
@@ -183,7 +180,7 @@ public class Board {
 					coordinates[3] = randomColumn;
 					coordinates[4] = randomRow+2;
 					coordinates[5] = randomColumn;
-					System.out.println("B");
+					
 				} else if((randomRow>=(row-2) || randomColumn>=(column-2)) && direction){
 					// if random number is 8 or 9 add one or two will be unavailable to put in, so I deduct
 					//random row and column 8-9 and add at direction column
@@ -198,7 +195,7 @@ public class Board {
 						//result will be 1,x,0,x,2,x 
 						coordinates[5]+=1;
 					}
-					System.out.println("C");
+					
 				} else if((randomRow>=(row-2) || randomColumn>=(column-2)) &&!direction){
 					// if random number is 8 or 9 add one or two will be unavailable to put in, so I deduct
 					//random row and column 8-9 and add at direction row
@@ -212,13 +209,8 @@ public class Board {
 						//this means you get 1,x,0,x,1,x to make it a large ship, turn -1 to 2
 						//result will be 1,x,0,x,2,x 
 						coordinates[4]+=1;
-					}
-					System.out.println("D");
-				}	else {
-					System.out.println("Error");
+					}					
 				}
-				System.out.println(coordinates[0]+","+coordinates[1]+","
-						+coordinates[2]+","+coordinates[3]+","+coordinates[4]+","+coordinates[5]);
 				break;
 		}						
 		return coordinates;
