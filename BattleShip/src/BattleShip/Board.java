@@ -7,7 +7,7 @@ public class Board {
 	private int row;
 	private int column;
 	static //for counting how many ships 
-	int count = 0;
+	int count = 0; //for counting existing ships
 	
 	public Board() {		
 	}
@@ -32,10 +32,11 @@ public class Board {
 			Square[][] gameBord,int row, int column, BattleShip[] b1, int smallShips, int mediumShip, int largeShip) {		
 		
 		int[] shipCoordinates = null;
-		int totalShips = smallShips + mediumShip + largeShip;
+		int totalShips = smallShips + mediumShip + largeShip; //6
 		count = 0;
 		boolean s1,s2,s3;
-		for(int i=0;i<totalShips-1;i++) {
+		for(int i=0;i<totalShips;i++) { //run 0-5, total 6 times
+			System.out.println("------"+ i);
 			shipCoordinates = generateShipCoordinates(row, column, smallShips, mediumShip, largeShip);	
 			Square square1,square2,square3;
 			switch(count) {				
@@ -55,6 +56,7 @@ public class Board {
 					}else {
 						i--;
 					}
+					
 					break;
 					
 				// case 3,4 is for generating medium ships
@@ -74,6 +76,7 @@ public class Board {
 					}else {
 						i--;
 					}
+					
 					break;
 					
 				// case 5 is for generating large ships coordinator
@@ -97,6 +100,7 @@ public class Board {
 					}else {
 						i--;
 					}
+					
 					break;
 			}//switch case ended here
 		}
@@ -127,6 +131,7 @@ public class Board {
 			// case 3,4 is for generating medium ships coordinator
 			case 3: case 4:
 				//generate medium ship coordinator
+				// row and column range from 0-8
 				if(randomRow<(row-1) && randomColumn<(column-1) && direction) {
 					//first coordinate
 					coordinates[0] = randomRow;
@@ -139,17 +144,18 @@ public class Board {
 					coordinates[1] = randomColumn;
 					coordinates[2] = randomRow+1;
 					coordinates[3] = randomColumn;
-				} else if(randomRow == 9 || randomColumn == 9 && direction){
+				// row or column range from 0-8
+				} else if((randomRow == 9 || randomColumn == 9) && direction){
 					// if random number add one will be unavailable to put in, so I deduct one
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
 					coordinates[2] = randomRow;
-					coordinates[3] = randomColumn-1;
-				} else if(randomRow == 9 || randomColumn == 9 && !direction){
+					coordinates[3] = Math.abs(randomColumn-1);
+				} else if((randomRow == 9 || randomColumn == 9) && !direction){
 					// if random number add one will be unavailable to put in, so I deduct one
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
-					coordinates[2] = randomRow-1;
+					coordinates[2] = Math.abs(randomRow-1);
 					coordinates[3] = randomColumn;
 				}
 				break;
@@ -158,6 +164,7 @@ public class Board {
 			case 5: 
 				//generate medium ship coordinator
 				if(randomRow<(row-2) && randomColumn<(column-2) && direction) {
+					//random row and column 0-7 and add at direction column
 					//first coordinate
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
@@ -167,30 +174,51 @@ public class Board {
 					//third coordinate
 					coordinates[4] = randomRow;
 					coordinates[5] = randomColumn+2;
+					System.out.println("A");
 				} else if(randomRow<(row-2) && randomColumn<(column-2) && !direction){
+					//random row and column 0-7 and add at direction row
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
 					coordinates[2] = randomRow+1;
 					coordinates[3] = randomColumn;
 					coordinates[4] = randomRow+2;
 					coordinates[5] = randomColumn;
-				} else if(direction){
+					System.out.println("B");
+				} else if((randomRow>=(row-2) || randomColumn>=(column-2)) && direction){
 					// if random number is 8 or 9 add one or two will be unavailable to put in, so I deduct
+					//random row and column 8-9 and add at direction column
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
 					coordinates[2] = randomRow;
-					coordinates[3] = randomColumn-1;
+					coordinates[3] = Math.abs(randomColumn-1);
 					coordinates[4] = randomRow;
-					coordinates[5] = randomColumn-2;
-				} else if(!direction){
+					coordinates[5] = Math.abs(randomColumn-2);
+					if(coordinates[5]==coordinates[1]) {
+						//this means you get x,1,x,0,x,1 to make it a large ship, turn -1 to 2
+						//result will be 1,x,0,x,2,x 
+						coordinates[5]+=1;
+					}
+					System.out.println("C");
+				} else if((randomRow>=(row-2) || randomColumn>=(column-2)) &&!direction){
 					// if random number is 8 or 9 add one or two will be unavailable to put in, so I deduct
+					//random row and column 8-9 and add at direction row
 					coordinates[0] = randomRow;
 					coordinates[1] = randomColumn;
-					coordinates[2] = randomRow-1;
+					coordinates[2] = Math.abs(randomRow-1);
 					coordinates[3] = randomColumn;
-					coordinates[4] = randomRow-2;
+					coordinates[4] = Math.abs(randomRow-2);
 					coordinates[5] = randomColumn;
-				}	
+					if(coordinates[4]==coordinates[0]) {
+						//this means you get 1,x,0,x,1,x to make it a large ship, turn -1 to 2
+						//result will be 1,x,0,x,2,x 
+						coordinates[4]+=1;
+					}
+					System.out.println("D");
+				}	else {
+					System.out.println("Error");
+				}
+				System.out.println(coordinates[0]+","+coordinates[1]+","
+						+coordinates[2]+","+coordinates[3]+","+coordinates[4]+","+coordinates[5]);
 				break;
 		}						
 		return coordinates;
