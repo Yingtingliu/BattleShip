@@ -47,14 +47,6 @@ public class Player {
 		for(BattleShip b : battleShipArray) if(!b.isSunk()) return false;
 	    return true;
 	}
-	
-	
-	public void gameOver(Player player) {		
-		
-						
-		
-	}
-	
 
 	//getter and setter
 	public Board getBoard() {

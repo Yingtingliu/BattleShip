@@ -52,7 +52,7 @@ public class Board {
 
 
 	private static int[] generateShipCoordinates(int row, int column) {
-		int[] cooridnates = new int[4];
+		int[] coordinates = new int[4];
 
 		//random position
 		Random r = new Random();
@@ -61,18 +61,31 @@ public class Board {
 		//ramdom direction		
 		boolean direction = r.nextBoolean();
 		
+		//put random numbers into the coordinates
 		if(randomRow<(row-1) && randomColumn<(column-1) && direction) {
-			cooridnates[0] = randomRow;
-			cooridnates[1] = randomColumn;
-			cooridnates[2] = randomRow;
-			cooridnates[3] = randomColumn+1;
+			coordinates[0] = randomRow;
+			coordinates[1] = randomColumn;
+			coordinates[2] = randomRow;
+			coordinates[3] = randomColumn+1;
 		} else if(randomRow<(row-1) && randomColumn<(column-1) && !direction){
-			cooridnates[0] = randomRow;
-			cooridnates[1] = randomColumn;
-			cooridnates[2] = randomRow+1;
-			cooridnates[3] = randomColumn;
-		}		
-		return cooridnates;
+			coordinates[0] = randomRow;
+			coordinates[1] = randomColumn;
+			coordinates[2] = randomRow+1;
+			coordinates[3] = randomColumn;
+		} else if(randomRow == 9 || randomColumn == 9 && direction){
+			// if random number add one will be unavailable to put in, so I deduct one
+			coordinates[0] = randomRow;
+			coordinates[1] = randomColumn;
+			coordinates[2] = randomRow;
+			coordinates[3] = randomColumn-1;
+		} else if(randomRow == 9 || randomColumn == 9 && !direction){
+			// if random number add one will be unavailable to put in, so I deduct one
+			coordinates[0] = randomRow;
+			coordinates[1] = randomColumn;
+			coordinates[2] = randomRow-1;
+			coordinates[3] = randomColumn;
+		}						
+		return coordinates;
 	}
 	
 
@@ -85,8 +98,7 @@ public class Board {
 				System.out.print(gameBoard[i][j].toString());				
 			}
 			System.out.println();
-		}
-		
+		}		
 		System.out.println("------Game Borad Ends-----");
 		
 		return null;
