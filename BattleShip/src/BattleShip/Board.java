@@ -221,7 +221,13 @@ public class Board {
 		
 		System.out.println("------Game Borad Starts Here-----");
 //		Square[][] b2 = board.gameBord(row,column);
+		System.out.print("  ");
 		for (int i = 0; i < column; i++) {
+			System.out.print(" "+ i+" ");
+		}
+		System.out.println();
+		for (int i = 0; i < column; i++) {
+			System.out.print(i+ " ");
 			for (int j = 0; j < row; j++) {
 				System.out.print(gameBoard[i][j].toString());				
 			}
@@ -235,7 +241,13 @@ public class Board {
 	public String toStringViewShip (Board board, Square[][] gameBoard) {		
 		System.out.println("------Ship Borad Starts Here-----");
 //		Square[][] b2 = board.gameBord(row,column);
+		System.out.print("  ");
 		for (int i = 0; i < column; i++) {
+			System.out.print(" "+ i+" ");
+		}
+		System.out.println();
+		for (int i = 0; i < column; i++) {
+			System.out.print(i+ " ");
 			for (int j = 0; j < row; j++) {
 				System.out.print(gameBoard[i][j].toStringViewShip());				
 			}
