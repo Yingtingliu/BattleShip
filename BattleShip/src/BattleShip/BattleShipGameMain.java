@@ -2,19 +2,26 @@ package BattleShip;
 
 
 public class BattleShipGameMain {
+	
+	//define the board
+	static int row = 10;
+	static int column = 10;
+	final static int smallShipAmount = 3;
+	final static int mediumShipAmount = 2;
+	final static int largeShipAmount = 1;
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) {		
 		
-		//define the board
-		int row = 10;
-		int column = 10;
-		final int shipAmount = 5;
+		int totalShips = smallShipAmount+mediumShipAmount+largeShipAmount;
+		
 		Board b1 = new Board(row,column);
 		Board b2 = new Board(row,column);
-		BattleShip[] shipArray1 = new BattleShip[shipAmount];
-		BattleShip[] shipArray2 = new BattleShip[shipAmount];
-		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1);
-		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2);
+		
+		BattleShip[] shipArray1 = new BattleShip[totalShips];
+		BattleShip[] shipArray2 = new BattleShip[totalShips];
+		
+		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1,smallShipAmount,mediumShipAmount,largeShipAmount);
+		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2,smallShipAmount,mediumShipAmount,largeShipAmount);
 		
 		//Create two player and take turns
 		boolean turn = false;		
