@@ -216,11 +216,10 @@ public class Board {
 		return coordinates;
 	}
 	
-
+	//print out game board
 	public String toString(Board board, Square[][] gameBoard) {		
 		
 		System.out.println("------Game Borad Starts Here-----");
-//		Square[][] b2 = board.gameBord(row,column);
 		System.out.print("  ");
 		for (int i = 0; i < column; i++) {
 			System.out.print(" "+ i+" ");
@@ -237,10 +236,9 @@ public class Board {
 		
 		return null;
 	}
-	
+	//print out game board view where's the ship
 	public String toStringViewShip (Board board, Square[][] gameBoard) {		
 		System.out.println("------Ship Borad Starts Here-----");
-//		Square[][] b2 = board.gameBord(row,column);
 		System.out.print("  ");
 		for (int i = 0; i < column; i++) {
 			System.out.print(" "+ i+" ");
