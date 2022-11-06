@@ -16,7 +16,7 @@ public class Player {
 	public boolean takeTurn(Board board,Player player, Square[][] gameboard,BattleShip[] battleShipArray) {
 		//print the board
 		board.toString(board,gameboard);
-		board.toStringViewShip(board,gameboard);		
+//		board.toStringViewShip(board,gameboard);	//this is for testing	
 		
 		//Use scanner to get player's input
 		String temp, firstWord, secondWord;

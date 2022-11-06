@@ -236,26 +236,30 @@ public class Board {
 		
 		return null;
 	}
+	
+	
+	
+	//this is for testing	
 	//print out game board view where's the ship
-	public String toStringViewShip (Board board, Square[][] gameBoard) {		
-		System.out.println("------Ship Borad Starts Here-----");
-		System.out.print("  ");
-		for (int i = 0; i < column; i++) {
-			System.out.print(" "+ i+" ");
-		}
-		System.out.println();
-		for (int i = 0; i < column; i++) {
-			System.out.print(i+ " ");
-			for (int j = 0; j < row; j++) {
-				System.out.print(gameBoard[i][j].toStringViewShip());				
-			}
-			System.out.println();
-		}
-		
-		System.out.println("------Ship Borad Ends-----");
-		
-		return null;
-	}
+//	public String toStringViewShip (Board board, Square[][] gameBoard) {		
+//		System.out.println("------Ship Borad Starts Here-----");
+//		System.out.print("  ");
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(" "+ i+" ");
+//		}
+//		System.out.println();
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(i+ " ");
+//			for (int j = 0; j < row; j++) {
+//				System.out.print(gameBoard[i][j].toStringViewShip());				
+//			}
+//			System.out.println();
+//		}
+//		
+//		System.out.println("------Ship Borad Ends-----");
+//		
+//		return null;
+//	}
 	
 	
 		
