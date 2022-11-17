@@ -8,6 +8,7 @@ public class Board {
 	private int column; // 10
 	
 	static int count = 0; //for counting existing ships
+	Square[][] gameBoard;
 	
 	public Board() {		
 	}
@@ -18,15 +19,15 @@ public class Board {
 	}
 	
 	// populate the board data structure with Square objects
-	public Square[][] gameBord (
+	public Square[][] placeGameBord (
 			int row, int column,  BattleShip[] b1, int smallShips, int mediumShip, int largeShip){
-		Square[][] gameBord = new Square[row][column];
+		gameBoard = new Square[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBord[i][j] = new Square(i,j,false,-1,false);
+				gameBoard[i][j] = new Square(i,j,false,-1,false);
 			}
 		}
-		return placeShips(gameBord,row,column,b1,smallShips,mediumShip,largeShip);
+		return placeShips(gameBoard,row,column,b1,smallShips,mediumShip,largeShip);
 	}
 	
 	// generating battleships
@@ -219,7 +220,7 @@ public class Board {
 	}
 	
 	//print out game board
-	public String toString(Board board, Square[][] gameBoard) {		
+	public String toString() {		
 		
 		System.out.println("------Game Borad Starts Here-----");
 		System.out.print("  ");
@@ -230,7 +231,7 @@ public class Board {
 		for (int i = 0; i < column; i++) {
 			System.out.print(i+ " ");
 			for (int j = 0; j < row; j++) {
-				System.out.print(gameBoard[i][j].toString());				
+				System.out.print(this.gameBoard[i][j].toString());				
 			}
 			System.out.println();
 		}		

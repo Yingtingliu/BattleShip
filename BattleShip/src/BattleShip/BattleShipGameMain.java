@@ -21,8 +21,8 @@ public class BattleShipGameMain {
 		BattleShip[] shipArray1 = new BattleShip[totalShips];
 		BattleShip[] shipArray2 = new BattleShip[totalShips];
 		
-		Square[][] gameBoard1 = b1.gameBord(row, column,shipArray1,smallShipAmount,mediumShipAmount,largeShipAmount);
-		Square[][] gameBoard2 = b2.gameBord(row, column,shipArray2,smallShipAmount,mediumShipAmount,largeShipAmount);
+		Square[][] gameBoard1 = b1.placeGameBord(row, column,shipArray1,smallShipAmount,mediumShipAmount,largeShipAmount);
+		Square[][] gameBoard2 = b2.placeGameBord(row, column,shipArray2,smallShipAmount,mediumShipAmount,largeShipAmount);
 		
 		//Create two player and take turns
 		boolean turn = false;		
@@ -33,12 +33,12 @@ public class BattleShipGameMain {
 		while(!turn ) {			
 			turn = player1.takeTurn(b1,player1, gameBoard1,shipArray1);
 			if(turn) { //player 1 win 
-				System.out.println(player1.name + ", You won the battle! ");
+				System.out.println(player1.getName() + ", You won the battle! ");
 				break;
 			}
 			turn = player2.takeTurn(b2, player2, gameBoard2,shipArray2);
 			if(turn) {//player 2 win 
-				System.out.println(player2.name + ", You won the battle! ");
+				System.out.println(player2.getName() + ", You won the battle! ");
 				break;
 			}
 		}			
