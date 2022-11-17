@@ -3,9 +3,9 @@ package BattleShip;
 import java.util.Scanner;
 
 public class Player {
-	Board board;
-	String name;
-	int score;	
+	private Board board;
+	private String name;
+	private int score;	
 	
 	//constructor
 	public Player(Board board, String name) {

@@ -14,7 +14,7 @@ public class Square {
 	// default -1
 	
 	private boolean fire; 
-	//true: this square has been fired 
+	// true: this square has been fired 
 	// default false
 	
 	//constructor	

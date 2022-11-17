@@ -4,19 +4,20 @@ import java.util.Random;
 
 public class Board {
 
-	private int row;
-	private int column;
-	static //for counting how many ships 
-	int count = 0; //for counting existing ships
+	private int row; // 10
+	private int column; // 10
+	
+	static int count = 0; //for counting existing ships
 	
 	public Board() {		
 	}
 	
-	public Board(Integer row, Integer column) {
+	public Board(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
 	
+	// populate the board data structure with Square objects
 	public Square[][] gameBord (
 			int row, int column,  BattleShip[] b1, int smallShips, int mediumShip, int largeShip){
 		Square[][] gameBord = new Square[row][column];
@@ -27,7 +28,8 @@ public class Board {
 		}
 		return placeShips(gameBord,row,column,b1,smallShips,mediumShip,largeShip);
 	}
-
+	
+	// generating battleships
 	private static Square[][] placeShips(
 			Square[][] gameBord,int row, int column, BattleShip[] b1, int smallShips, int mediumShip, int largeShip) {		
 		
