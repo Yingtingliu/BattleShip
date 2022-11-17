@@ -13,55 +13,82 @@ public class Player {
 		this.name = name;		
 	}
 	
-	public boolean takeTurn(Board board,Player player, Square[][] gameboard,BattleShip[] battleShipArray) {
-		//print the board
+	public boolean takeTurn(Board board, Square[][] gameboard,BattleShip[] battleShipArray) {
+
+		int row;
+		int column;
+		boolean fire;
+		boolean gameOver = false;;
+
+		//print the original board
 		board.toString();
-//		board.toStringViewShip();	//this is for testing	
-		
+		board.toStringViewShip();	//this is for testing	
+
 		//Use scanner to get player's input
 		String temp, firstWord, secondWord;
-		System.out.println("Hi " + player.name + ", please enter the position x y from 0-9, eg: 0 1");
+		// the users should be prompted for their names and have this be used as input to the constructors. 
+		System.out.println("Hi " + this.name + ", please enter the position x y from 0-9, eg: 0 1");
 		Scanner in = new Scanner(System.in);
 		temp = in.nextLine();
 		in = new Scanner(temp);
 		//extract input to two words
 		firstWord = in.next(); 
 		secondWord = in.next();
-		int row = Integer.valueOf(firstWord);
-		int column = Integer.valueOf(secondWord);		
+		//row and column from user
+		row = Integer.valueOf(firstWord); 
+		column = Integer.valueOf(secondWord); 
 		
-		// hit the square		
-		if(gameboard[row][column].isShipInSquare()) {
-			//if there's ship, get the battle ship number
-			int battleShipNumber = gameboard[row][column].getBattleShipNumber();
-			// check current health number
-			int currentHealth = battleShipArray[battleShipNumber].getHealth();
-			battleShipArray[battleShipNumber].setHealth(currentHealth-1);
-			//if the current health number is 1, deduct the number and set it as sink
-			if(currentHealth==1) { 
-				battleShipArray[battleShipNumber].setSunk(true);
-			} 			
-		} 
-		gameboard[row][column].setFire(true);
-		
-		//check if the game is over, if over return true;
-		boolean gameOver = false;
-		int count = 0;
-		for(int i =0; i<battleShipArray.length;) { //0-5			
-			boolean a = battleShipArray[i].isSunk();
-			if(a) {
-				count++;
+		//check if this square is fired or not
+		fire = gameboard[row][column].isFire();	
+		// if fire is true, return false and take turn to another player
+		// if fire is false, set it fired and check if it hits a ship
+		if(!fire) {
+//		Each Battleship object will be checked against whenever a player fires into the board on a particular square.		
+			// the square been hit, set fire as true
+			gameboard[row][column].setFire(true);
+			
+			// hit the square, check if there's ship inside		
+			if(gameboard[row][column].isShipInSquare()) {
+				//if there's ship, get the battle ship number
+				int battleShipNumber = gameboard[row][column].getBattleShipNumber();
+				// check current health number
+				int currentHealth = battleShipArray[battleShipNumber].getHealth();
+				//deduct the health
+				battleShipArray[battleShipNumber].setHealth(currentHealth-1);
+				System.out.println("Good Job! You hit a ship!");
+				
+				//if the current health number is 1, deduct the number and set it as sink
+				if(currentHealth==1) { 
+					battleShipArray[battleShipNumber].setSunk(true);
+					score = score+1;
+					System.out.println("This ship also sink! Great work!");
+				} 			
 			} else {
-				return gameOver = false;
-			}			
-			if(count == battleShipArray.length -1) {
-				return gameOver = true;
-			} else {
-				i++;
+				System.out.println("Sorry, you fired and missed!!");
 			}
-		}
+			
+			//print the result board
+			System.out.println("This is the result game board: ");
+			board.toString();
+			System.out.println("--------------------------------------");
+			
+			// check if the game is over, by checking if all the ship is sunk 
+			// if game over return true			
+			if(battleShipArray.length == score) {
+				return gameOver = true;
+			}
+			
+		} else{
+			System.out.println("This squre had been fired before!!");	
+			//print the result board
+			System.out.println("This is the result game board: ");
+			board.toString();
+			System.out.println("--------------------------------------");
+		}// end if		
+		
 		return gameOver;		    
-	}
+	} // end of takeTurn method
+	
 
 	//getter and setter
 	public Board getBoard() {

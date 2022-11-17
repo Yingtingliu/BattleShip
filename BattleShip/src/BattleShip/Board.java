@@ -8,10 +8,8 @@ public class Board {
 	private int column; // 10
 	
 	static int count = 0; //for counting existing ships
-	Square[][] gameBoard;
+	Square[][] gameBoard; //game board
 	
-	public Board() {		
-	}
 	
 	public Board(int row, int column) {
 		this.row = row;
@@ -222,8 +220,7 @@ public class Board {
 	//print out game board
 	public String toString() {		
 		
-		System.out.println("------Game Borad Starts Here-----");
-		System.out.print("  ");
+		System.out.print(" ");
 		for (int i = 0; i < column; i++) {
 			System.out.print(" "+ i+" ");
 		}
@@ -235,34 +232,32 @@ public class Board {
 			}
 			System.out.println();
 		}		
-		System.out.println("------Game Borad Ends-----");
-		
 		return null;
 	}
 	
 	
 	
-	//this is for testing	
-	//print out game board view where's the ship
-//	public String toStringViewShip (Board board, Square[][] gameBoard) {		
-//		System.out.println("------Ship Borad Starts Here-----");
-//		System.out.print("  ");
-//		for (int i = 0; i < column; i++) {
-//			System.out.print(" "+ i+" ");
-//		}
-//		System.out.println();
-//		for (int i = 0; i < column; i++) {
-//			System.out.print(i+ " ");
-//			for (int j = 0; j < row; j++) {
-//				System.out.print(gameBoard[i][j].toStringViewShip());				
-//			}
-//			System.out.println();
-//		}
-//		
-//		System.out.println("------Ship Borad Ends-----");
-//		
-//		return null;
-//	}
+//	this is for testing	
+//	print out game board view where's the ship
+	public String toStringViewShip () {		
+		System.out.println("------Ship Borad Starts Here-----");
+		System.out.print("  ");
+		for (int i = 0; i < column; i++) {
+			System.out.print(" "+ i+" ");
+		}
+		System.out.println();
+		for (int i = 0; i < column; i++) {
+			System.out.print(i+ " ");
+			for (int j = 0; j < row; j++) {
+				System.out.print(gameBoard[i][j].toStringViewShip());				
+			}
+			System.out.println();
+		}
+		
+		System.out.println("------Ship Borad Ends-----");
+		
+		return null;
+	}
 	
 	
 		

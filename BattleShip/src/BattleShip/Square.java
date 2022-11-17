@@ -70,15 +70,19 @@ public class Square {
 		
 		if(fire && battleShipNumber!=-1) {
 			//hit a ship
-			return " x ";
+			String hitAShip = "x";			
+			return String.format("%-3s",hitAShip);
 		} else if(fire && battleShipNumber==-1){
 			//fired and missed
-			return " o ";
+			String emptyCell = "o";			
+			return String.format("%-3s",emptyCell);
 		} else {
-			return " - ";
+			String notFired = "-";			
+			return String.format("%-3s",notFired);
 		}		
 		
 	}
+	
 	public String toStringViewShip() {
 		
 		if(shipInSquare) {
@@ -88,10 +92,5 @@ public class Square {
 		}		
 		
 	}
-	
-	
-	
-	
-	
 
 }
