@@ -2,7 +2,8 @@ package BattleShip;
 
 public class LargeBattleship extends BattleShip{
 	
-	private int defaultSize = 3;	
+	private int defaultSize = 3;
+	int permissibleShips = 1;
 	
 	public LargeBattleship(boolean sunk) {
 		super(sunk);

@@ -7,12 +7,12 @@ public class BattleShipGameMain {
 	//define the board
 	static int row = 10;
 	static int column = 10;
-	//define the ships
-	final static int smallShipAmount = 3;
-	final static int mediumShipAmount = 2;
-	final static int largeShipAmount = 1;
 
 	public static void main(String[] args) {		
+		
+		int smallShipAmount = new SmallBattleship(false).permissibleShips;
+		int mediumShipAmount = new MediumBattleship(false).permissibleShips;
+		int largeShipAmount = new LargeBattleship(false).permissibleShips;
 		
 		int totalShips = smallShipAmount+mediumShipAmount+largeShipAmount;
 		
