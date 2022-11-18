@@ -92,7 +92,7 @@ public class Square {
 		
 	}
 	
-	//this is for testing
+//	this is for testing
 //	public String toStringViewShip() {
 //		
 //		if(shipInSquare) {
