@@ -1,6 +1,5 @@
 package BattleShip;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -53,7 +52,6 @@ public class Board {
 						//create a small battle ship
 						b1[i] = new SmallBattleship(false);
 						square1.setShipInSquare(true);						
-//						square1.setBattleShipNumber(i);	
 						square1.setBattleShip(b1[i]);
 						count++;
 					}else {
@@ -72,8 +70,6 @@ public class Board {
 						b1[i] = new MediumBattleship(false);
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
-//						square1.setBattleShipNumber(i);
-//						square2.setBattleShipNumber(i);
 						square1.setBattleShip(b1[i]);
 						square2.setBattleShip(b1[i]);
 						count++;
@@ -96,9 +92,6 @@ public class Board {
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
 						square3.setShipInSquare(true);
-//						square1.setBattleShipNumber(i);
-//						square2.setBattleShipNumber(i);
-//						square3.setBattleShipNumber(i);
 						square1.setBattleShip(b1[i]);
 						square2.setBattleShip(b1[i]);
 						square3.setBattleShip(b1[i]);
@@ -249,22 +242,22 @@ public class Board {
 	
 //	this is for testing	
 //	print out game board view where's the ship
-	public String toStringViewShip () {		
-		System.out.println("------Ship Borad Starts Here-----");
-		System.out.print("  ");
-		for (int i = 0; i < column; i++) {
-			System.out.print(" "+ i+" ");
-		}
-		System.out.println();
-		for (int i = 0; i < column; i++) {
-			System.out.print(i+ " ");
-			for (int j = 0; j < row; j++) {
-				System.out.print(gameBoard[i][j].toStringViewShip());				
-			}
-			System.out.println();
-		}		
-		System.out.println("------Ship Borad Ends-----");		
-		return null;
-	}	
+//	public String toStringViewShip () {		
+//		System.out.println("------Ship Borad Starts Here-----");
+//		System.out.print("  ");
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(" "+ i+" ");
+//		}
+//		System.out.println();
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(i+ " ");
+//			for (int j = 0; j < row; j++) {
+//				System.out.print(gameBoard[i][j].toStringViewShip());				
+//			}
+//			System.out.println();
+//		}		
+//		System.out.println("------Ship Borad Ends-----");		
+//		return null;
+//	}	
 		
 }

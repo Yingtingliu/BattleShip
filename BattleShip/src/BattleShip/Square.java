@@ -20,10 +20,6 @@ public class Square {
 	// true: this square has been fired 
 	// default false	
 
-//	private int battleShipNumber; 
-//	// number of the battle ship
-//	// default -1
-
 	public Square(int row, int column, boolean shipInSquare, BattleShip battleShip, boolean fire) {
 		super();
 		this.row = row;
@@ -71,13 +67,6 @@ public class Square {
 		this.fire = fire;
 	}
 
-//	public int getBattleShipNumber() {
-//		return battleShipNumber;
-//	}
-//
-//	public void setBattleShipNumber(int battleShipNumber) {
-//		this.battleShipNumber = battleShipNumber;
-//	}
 
 	@Override
 	public String toString() {
@@ -103,14 +92,15 @@ public class Square {
 		
 	}
 	
-	public String toStringViewShip() {
-		
-		if(shipInSquare) {
-			return " S ";
-		} else {
-			return " - ";
-		}		
-		
-	}
+	//this is for testing
+//	public String toStringViewShip() {
+//		
+//		if(shipInSquare) {
+//			return " S ";
+//		} else {
+//			return " - ";
+//		}		
+//		
+//	}
 
 }

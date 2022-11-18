@@ -22,7 +22,7 @@ public class Player {
 
 		//print the original board
 		board.toString();
-		board.toStringViewShip();	//this is for testing	
+//		board.toStringViewShip();	//this is for testing	
 
 		//Use scanner to get player's input
 		String temp, firstWord, secondWord;
