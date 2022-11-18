@@ -18,7 +18,7 @@ public class Player {
 		int row;
 		int column;
 		boolean fire;
-		boolean gameOver = false;;
+		boolean gameOver = false;
 
 		//print the original board
 		board.toString();
@@ -38,28 +38,32 @@ public class Player {
 		row = Integer.valueOf(firstWord); 
 		column = Integer.valueOf(secondWord); 
 		
-		//check if this square is fired or not
+		
+		//check for areas that have already been fired at		
 		fire = gameboard[row][column].isFire();	
+		
 		// if fire is true, return false and take turn to another player
 		// if fire is false, set it fired and check if it hits a ship
 		if(!fire) {
 //		Each Battleship object will be checked against whenever a player fires into the board on a particular square.		
+			
 			// the square been hit, set fire as true
 			gameboard[row][column].setFire(true);
 			
-			// hit the square, check if there's ship inside		
-			if(gameboard[row][column].isShipInSquare()) {
-				//if there's ship, get the battle ship number
-				int battleShipNumber = gameboard[row][column].getBattleShipNumber();
+			// hit the square, check if there's ship inside	
+			BattleShip battleShip = gameboard[row][column].getBattleShip();
+			
+			// cannot hit the ship in the same square twice and have it count
+			if(battleShip != null) {				
 				// check current health number
-				int currentHealth = battleShipArray[battleShipNumber].getHealth();
+				int currentHealth = battleShip.getHealth();
 				//deduct the health
-				battleShipArray[battleShipNumber].setHealth(currentHealth-1);
+				battleShip.setHealth(currentHealth-1);
 				System.out.println("Good Job! You hit a ship!");
 				
 				//if the current health number is 1, deduct the number and set it as sink
 				if(currentHealth==1) { 
-					battleShipArray[battleShipNumber].setSunk(true);
+					battleShip.setSunk(true);
 					score = score+1;
 					System.out.println("This ship also sink! Great work!");
 				} 			
@@ -75,7 +79,7 @@ public class Player {
 			
 		} else{
 			//if fire is true, which means it has been fired before.
-			//inform the player this square has been fired
+			//In the event the player enters coordinates that have been checked prior, they will lose their turn.
 			System.out.println("This squre had been fired before!! You can't hit it!");	
 		}// end if		
 		

@@ -1,5 +1,6 @@
 package BattleShip;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -22,7 +23,7 @@ public class Board {
 		gameBoard = new Square[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBoard[i][j] = new Square(i,j,false,-1,false);
+				gameBoard[i][j] = new Square(i,j,false,null,false);
 			}
 		}
 		return placeShips(gameBoard,row,column,b1,smallShips,mediumShip,largeShip);
@@ -52,7 +53,8 @@ public class Board {
 						//create a small battle ship
 						b1[i] = new SmallBattleship(false);
 						square1.setShipInSquare(true);						
-						square1.setBattleShipNumber(i);						
+//						square1.setBattleShipNumber(i);	
+						square1.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -70,8 +72,10 @@ public class Board {
 						b1[i] = new MediumBattleship(false);
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
-						square1.setBattleShipNumber(i);
-						square2.setBattleShipNumber(i);
+//						square1.setBattleShipNumber(i);
+//						square2.setBattleShipNumber(i);
+						square1.setBattleShip(b1[i]);
+						square2.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -92,9 +96,12 @@ public class Board {
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
 						square3.setShipInSquare(true);
-						square1.setBattleShipNumber(i);
-						square2.setBattleShipNumber(i);
-						square3.setBattleShipNumber(i);
+//						square1.setBattleShipNumber(i);
+//						square2.setBattleShipNumber(i);
+//						square3.setBattleShipNumber(i);
+						square1.setBattleShip(b1[i]);
+						square2.setBattleShip(b1[i]);
+						square3.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -105,7 +112,7 @@ public class Board {
 		return gameBord;
 	}
 
-
+	// restrictions for ships
 	private static int[] generateShipCoordinates(int row, int column, int smallShips, int mediumShip, int largeShip) {
 		int[] coordinates = new int[(smallShips+mediumShip+largeShip)];
 
@@ -117,18 +124,20 @@ public class Board {
 		boolean direction = r.nextBoolean();
 		
 		//put random numbers into the coordinates
+		// it will exist out of bounds of the board and 
+		// ensure that ships do not overlap 
 		switch(count) {
 			
 			// case 0,1,2 is for generating small ships coordinator
 			case 0: case 1: case 2:
-				//first coordinate
+				// first coordinate
 				coordinates[0] = randomRow;
 				coordinates[1] = randomColumn;
 				break;
 				
 			// case 3,4 is for generating medium ships coordinator
 			case 3: case 4:
-				//generate medium ship coordinator
+				// generate medium ship coordinator
 				// row and column range from 0-8
 				if(randomRow<(row-1) && randomColumn<(column-1) && direction) {
 					//first coordinate
@@ -231,7 +240,8 @@ public class Board {
 				System.out.print(this.gameBoard[i][j].toString());				
 			}
 			System.out.println();
-		}		
+		}
+	
 		return null;
 	}
 	

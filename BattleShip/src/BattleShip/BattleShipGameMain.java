@@ -10,9 +10,9 @@ public class BattleShipGameMain {
 
 	public static void main(String[] args) {		
 		
-		int smallShipAmount = new SmallBattleship(false).permissibleShips;
-		int mediumShipAmount = new MediumBattleship(false).permissibleShips;
-		int largeShipAmount = new LargeBattleship(false).permissibleShips;
+		int smallShipAmount = SmallBattleship.permissibleShips;
+		int mediumShipAmount = MediumBattleship.permissibleShips;
+		int largeShipAmount = LargeBattleship.permissibleShips;
 		
 		int totalShips = smallShipAmount+mediumShipAmount+largeShipAmount;
 		
