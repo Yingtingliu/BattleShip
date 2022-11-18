@@ -67,24 +67,22 @@ public class Player {
 				System.out.println("Sorry, you fired and missed!!");
 			}
 			
-			//print the result board
-			System.out.println("This is the result game board: ");
-			board.toString();
-			System.out.println("--------------------------------------");
-			
 			// check if the game is over, by checking if all the ship is sunk 
 			// if game over return true			
 			if(battleShipArray.length == score) {
-				return gameOver = true;
+				gameOver = true;
 			}
 			
 		} else{
-			System.out.println("This squre had been fired before!!");	
-			//print the result board
-			System.out.println("This is the result game board: ");
-			board.toString();
-			System.out.println("--------------------------------------");
+			//if fire is true, which means it has been fired before.
+			//inform the player this square has been fired
+			System.out.println("This squre had been fired before!! You can't hit it!");	
 		}// end if		
+		
+		//print the result board
+		System.out.println("This is the result game board: ");
+		board.toString();
+		System.out.println("--------------------------------------");
 		
 		return gameOver;		    
 	} // end of takeTurn method

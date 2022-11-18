@@ -9,18 +9,20 @@ public class Square {
 	// true: this square has a ship
 	// default false
 	
-	private int battleShipNumber; 
-	// number of the battle ship
-	// default -1
+	// A reference to a battleship if one is currently on the Square
+	private BattleShip battleShip;
+	/*		A Square object can have a battleship associated with it
+	 *		and this information should be used to inform the toString
+	 *		method in the Square class 
+	 */	
 	
 	private boolean fire; 
 	// true: this square has been fired 
-	// default false
-	
-	//constructor	
-	public Square() {
-		super();
-	}	
+	// default false	
+
+	private int battleShipNumber; 
+	// number of the battle ship
+	// default -1
 
 	public Square(int row, int column, boolean shipInSquare, int battleShipNumber, boolean fire) {
 		super();
@@ -68,11 +70,16 @@ public class Square {
 	@Override
 	public String toString() {
 		
+/*		A Square object can have a battleship associated with it
+ *		and this information should be used to inform the toString
+ *		method in the Square class 
+ */
 		if(fire && battleShipNumber!=-1) {
 			//hit a ship
 			String hitAShip = "x";			
 			return String.format("%-3s",hitAShip);
-		} else if(fire && battleShipNumber==-1){
+//		} else if(fire && battleShipNumber==-1){
+		} else if(fire && battleShip == null){
 			//fired and missed
 			String emptyCell = "o";			
 			return String.format("%-3s",emptyCell);

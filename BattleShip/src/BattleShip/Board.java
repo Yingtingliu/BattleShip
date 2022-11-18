@@ -252,13 +252,9 @@ public class Board {
 				System.out.print(gameBoard[i][j].toStringViewShip());				
 			}
 			System.out.println();
-		}
-		
-		System.out.println("------Ship Borad Ends-----");
-		
+		}		
+		System.out.println("------Ship Borad Ends-----");		
 		return null;
-	}
-	
-	
+	}	
 		
 }
