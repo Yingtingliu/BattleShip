@@ -4,30 +4,31 @@ import java.util.Random;
 
 public class Board {
 
-	private int row;
-	private int column;
-	static //for counting how many ships 
-	int count = 0; //for counting existing ships
+	private int row; // 10
+	private int column; // 10
 	
-	public Board() {		
-	}
+	static int count = 0; //for counting existing ships
+	Square[][] gameBoard; //game board
 	
-	public Board(Integer row, Integer column) {
+	
+	public Board(int row, int column) {
 		this.row = row;
 		this.column = column;
 	}
 	
-	public Square[][] gameBord (
+	// populate the board data structure with Square objects
+	public Square[][] placeGameBord (
 			int row, int column,  BattleShip[] b1, int smallShips, int mediumShip, int largeShip){
-		Square[][] gameBord = new Square[row][column];
+		gameBoard = new Square[row][column];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				gameBord[i][j] = new Square(i,j,false,-1,false);
+				gameBoard[i][j] = new Square(i,j,false,null,false);
 			}
 		}
-		return placeShips(gameBord,row,column,b1,smallShips,mediumShip,largeShip);
+		return placeShips(gameBoard,row,column,b1,smallShips,mediumShip,largeShip);
 	}
-
+	
+	// generating battleships
 	private static Square[][] placeShips(
 			Square[][] gameBord,int row, int column, BattleShip[] b1, int smallShips, int mediumShip, int largeShip) {		
 		
@@ -51,7 +52,7 @@ public class Board {
 						//create a small battle ship
 						b1[i] = new SmallBattleship(false);
 						square1.setShipInSquare(true);						
-						square1.setBattleShipNumber(i);						
+						square1.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -69,8 +70,8 @@ public class Board {
 						b1[i] = new MediumBattleship(false);
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
-						square1.setBattleShipNumber(i);
-						square2.setBattleShipNumber(i);
+						square1.setBattleShip(b1[i]);
+						square2.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -91,9 +92,9 @@ public class Board {
 						square1.setShipInSquare(true);
 						square2.setShipInSquare(true);
 						square3.setShipInSquare(true);
-						square1.setBattleShipNumber(i);
-						square2.setBattleShipNumber(i);
-						square3.setBattleShipNumber(i);
+						square1.setBattleShip(b1[i]);
+						square2.setBattleShip(b1[i]);
+						square3.setBattleShip(b1[i]);
 						count++;
 					}else {
 						i--;
@@ -104,7 +105,7 @@ public class Board {
 		return gameBord;
 	}
 
-
+	// restrictions for ships
 	private static int[] generateShipCoordinates(int row, int column, int smallShips, int mediumShip, int largeShip) {
 		int[] coordinates = new int[(smallShips+mediumShip+largeShip)];
 
@@ -116,18 +117,20 @@ public class Board {
 		boolean direction = r.nextBoolean();
 		
 		//put random numbers into the coordinates
+		// it will exist out of bounds of the board and 
+		// ensure that ships do not overlap 
 		switch(count) {
 			
 			// case 0,1,2 is for generating small ships coordinator
 			case 0: case 1: case 2:
-				//first coordinate
+				// first coordinate
 				coordinates[0] = randomRow;
 				coordinates[1] = randomColumn;
 				break;
 				
 			// case 3,4 is for generating medium ships coordinator
 			case 3: case 4:
-				//generate medium ship coordinator
+				// generate medium ship coordinator
 				// row and column range from 0-8
 				if(randomRow<(row-1) && randomColumn<(column-1) && direction) {
 					//first coordinate
@@ -217,10 +220,9 @@ public class Board {
 	}
 	
 	//print out game board
-	public String toString(Board board, Square[][] gameBoard) {		
+	public String toString() {		
 		
-		System.out.println("------Game Borad Starts Here-----");
-		System.out.print("  ");
+		System.out.print(" ");
 		for (int i = 0; i < column; i++) {
 			System.out.print(" "+ i+" ");
 		}
@@ -228,35 +230,34 @@ public class Board {
 		for (int i = 0; i < column; i++) {
 			System.out.print(i+ " ");
 			for (int j = 0; j < row; j++) {
-				System.out.print(gameBoard[i][j].toString());				
-			}
-			System.out.println();
-		}		
-		System.out.println("------Game Borad Ends-----");
-		
-		return null;
-	}
-	//print out game board view where's the ship
-	public String toStringViewShip (Board board, Square[][] gameBoard) {		
-		System.out.println("------Ship Borad Starts Here-----");
-		System.out.print("  ");
-		for (int i = 0; i < column; i++) {
-			System.out.print(" "+ i+" ");
-		}
-		System.out.println();
-		for (int i = 0; i < column; i++) {
-			System.out.print(i+ " ");
-			for (int j = 0; j < row; j++) {
-				System.out.print(gameBoard[i][j].toStringViewShip());				
+				System.out.print(this.gameBoard[i][j].toString());				
 			}
 			System.out.println();
 		}
-		
-		System.out.println("------Ship Borad Ends-----");
-		
+	
 		return null;
 	}
 	
 	
+	
+//	this is for testing	
+//	print out game board view where's the ship
+//	public String toStringViewShip () {		
+//		System.out.println("------Ship Borad Starts Here-----");
+//		System.out.print("  ");
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(" "+ i+" ");
+//		}
+//		System.out.println();
+//		for (int i = 0; i < column; i++) {
+//			System.out.print(i+ " ");
+//			for (int j = 0; j < row; j++) {
+//				System.out.print(gameBoard[i][j].toStringViewShip());				
+//			}
+//			System.out.println();
+//		}		
+//		System.out.println("------Ship Borad Ends-----");		
+//		return null;
+//	}	
 		
 }

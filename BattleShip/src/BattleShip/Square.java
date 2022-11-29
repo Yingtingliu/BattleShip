@@ -9,25 +9,23 @@ public class Square {
 	// true: this square has a ship
 	// default false
 	
-	private int battleShipNumber; 
-	// number of the battle ship
-	// default -1
+	// A reference to a battleship if one is currently on the Square
+	private BattleShip battleShip;
+	/*		A Square object can have a battleship associated with it
+	 *		and this information should be used to inform the toString
+	 *		method in the Square class 
+	 */	
 	
 	private boolean fire; 
-	//true: this square has been fired 
-	// default false
-	
-	//constructor	
-	public Square() {
-		super();
-	}	
+	// true: this square has been fired 
+	// default false	
 
-	public Square(int row, int column, boolean shipInSquare, int battleShipNumber, boolean fire) {
+	public Square(int row, int column, boolean shipInSquare, BattleShip battleShip, boolean fire) {
 		super();
 		this.row = row;
 		this.column = column;
 		this.shipInSquare = shipInSquare;
-		this.battleShipNumber = battleShipNumber;
+		this.battleShip = battleShip;
 		this.fire = fire;
 	}
 
@@ -44,22 +42,27 @@ public class Square {
 	public void setColumn(Integer column) {
 		this.column = column;
 	}
+
 	public boolean isShipInSquare() {
 		return shipInSquare;
 	}
+
 	public void setShipInSquare(boolean shipInSquare) {
 		this.shipInSquare = shipInSquare;
 	}
-	public int getBattleShipNumber() {
-		return battleShipNumber;
+
+	public BattleShip getBattleShip() {
+		return battleShip;
 	}
-	public void setBattleShipNumber(int battleShipNumber) {
-		this.battleShipNumber = battleShipNumber;
+
+	public void setBattleShip(BattleShip battleShip) {
+		this.battleShip = battleShip;
 	}
 
 	public boolean isFire() {
 		return fire;
 	}
+
 	public void setFire(boolean fire) {
 		this.fire = fire;
 	}
@@ -68,30 +71,36 @@ public class Square {
 	@Override
 	public String toString() {
 		
-		if(fire && battleShipNumber!=-1) {
+/*		A Square object can have a battleship associated with it
+ *		and this information should be used to inform the toString
+ *		method in the Square class 
+ */
+		if(fire && battleShip != null) {
+//		if(fire && battleShipNumber!=-1) {
 			//hit a ship
-			return " x ";
-		} else if(fire && battleShipNumber==-1){
+			String hitAShip = "x";			
+			return String.format("%-3s",hitAShip);
+//		} else if(fire && battleShipNumber==-1){
+		} else if(fire && battleShip == null){
 			//fired and missed
-			return " o ";
+			String emptyCell = "o";			
+			return String.format("%-3s",emptyCell);
 		} else {
-			return " - ";
-		}		
-		
-	}
-	public String toStringViewShip() {
-		
-		if(shipInSquare) {
-			return " S ";
-		} else {
-			return " - ";
+			String notFired = "-";			
+			return String.format("%-3s",notFired);
 		}		
 		
 	}
 	
-	
-	
-	
-	
+//	this is for testing
+//	public String toStringViewShip() {
+//		
+//		if(shipInSquare) {
+//			return " S ";
+//		} else {
+//			return " - ";
+//		}		
+//		
+//	}
 
 }

@@ -6,6 +6,7 @@ public class BattleShip {
 	protected int health; //remaining health
 	protected int size; //size of the ship
 	
+	// this is for first version, but it doesn't affect after extension.
 	private int defaultBattleShip = 2;	
 	
 	public BattleShip(boolean sunk) {
